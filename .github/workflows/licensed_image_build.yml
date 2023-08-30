@@ -26,7 +26,7 @@ jobs:
           echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
  
       - name: Pull Base Docker image
-        run: docker pull ghcr.io/${{ github.repository }}/arm-mlops-docker-base:latest
+        run: docker pull ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
