@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}/mlops-image-name:latest
+          tags: ghcr.io/${{ github.repository }}/arm-mlops-docker-base:latest
