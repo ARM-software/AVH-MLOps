@@ -28,4 +28,4 @@ jobs:
         run: docker pull ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest
 
       - name: Run test command in Docker container
-        run: docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest armclang --version
+        run: docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armclang --version
