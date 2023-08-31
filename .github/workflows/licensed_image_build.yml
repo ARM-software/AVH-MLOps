@@ -29,9 +29,10 @@ jobs:
 
       - name: Create license file (stub)
         run: |
-          docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest -v ${PWD}:/var/host /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm activate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker --to-file /var/host/arm_mlops_docker_license
+          docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest -v ${{ github.workspace }}:/var/host /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm activate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker --to-file /var/host/arm_mlops_docker_license
           cp ./arm_mlops_docker_license ./docker_licensed/arm_mlops_docker_license
-          docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest -v ${PWD}:/var/host /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm deactivate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker 
+          cat ./docker_licensed/arm_mlops_docker_license
+          docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest -v ${{ github.workspace }}:/var/host /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm deactivate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker 
 
 
       - name: Build and push Docker image
