@@ -25,7 +25,7 @@ jobs:
         run: echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Pull Docker image
-        run: docker pull ghcr.io/${{ github.repository }}/arm-mlops-docker-licensed:latest
+        run: docker pull ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest
 
       - name: Run test command in Docker container
-        run: docker run --rm ghcr.io/${{ github.repository }}/arm-mlops-docker-licensed:latest armclang --version
+        run: docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest armclang --version
