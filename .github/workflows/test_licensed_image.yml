@@ -2,7 +2,7 @@ name: Run Test in Docker Container
 
 on:
   workflow_run:
-    workflows: ["Build and Push Docker Image"]
+    workflows: ["Build and Push Licensed Docker Image"]
     types:
       - completed
 
