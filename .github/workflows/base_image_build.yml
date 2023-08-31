@@ -21,8 +21,7 @@ jobs:
 
       - name: Format repo slug
         id: repo_slug
-        run: |
-          echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+        run: echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2

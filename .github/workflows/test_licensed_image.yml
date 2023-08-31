@@ -20,6 +20,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Format repo slug
+        id: repo_slug
+        run: echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Pull Docker image
         run: docker pull ghcr.io/${{ github.repository }}/arm-mlops-docker-licensed:latest
 
