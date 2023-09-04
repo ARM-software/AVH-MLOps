@@ -1,0 +1,27 @@
+name: Build ML Library project
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Docker Image"]
+    types:
+      - completed
+
+jobs:
+  run_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull Docker image
+        run: docker pull ghcr.io/${{ github.repository }}/arm-mlops-docker-licensed:latest
+
+      - name: Run test command in Docker container
+        run: docker run --rm ghcr.io/${{ github.repository }}/arm-mlops-docker-licensed:latest armclang --version

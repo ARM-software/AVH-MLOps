@@ -1,0 +1,31 @@
+name: Run Test in Docker Container
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Licensed Docker Image"]
+    types:
+      - completed
+
+jobs:
+  run_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Format repo slug
+        id: repo_slug
+        run: echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Pull Docker image
+        run: docker pull ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest
+
+      - name: Run test command in Docker container
+        run: docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armclang --version
