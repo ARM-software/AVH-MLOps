@@ -1,0 +1,59 @@
+project:
+
+  debug: off
+
+  packs:
+    - pack: ARM::CMSIS@5.9.0
+    - pack: tensorflow::flatbuffers@1.22.5-rc4
+    - pack: tensorflow::gemmlowp@1.22.5-rc4
+    - pack: tensorflow::kissfft@1.22.5-rc4
+    - pack: tensorflow::ruy@1.22.5-rc4
+    - pack: tensorflow::tensorflow-lite-micro@1.22.5-rc4
+
+  add-path:
+    - ../Include/micro_speech
+    - ./micro_speech
+
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: ARM::CMSIS:DSP&Source
+    - component: ARM::CMSIS:NN Lib
+    - component: tensorflow::Data Exchange:Serialization:flatbuffers&tensorflow
+    - component: tensorflow::Data Processing:Math:gemmlowp fixed-point&tensorflow
+    - component: tensorflow::Data Processing:Math:kissfft&tensorflow
+    - component: tensorflow::Data Processing:Math:ruy&tensorflow
+    - component: tensorflow::Machine Learning:TensorFlow:Kernel Utils
+    - component: tensorflow::Machine Learning:TensorFlow:Kernel&CMSIS-NN
+
+  groups:
+    - group: TFL_main
+      files:
+        - file: ./micro_speech/arm_nn_softmax_common_s8.c
+    - group: TFL_micro_features
+      files:
+        - file: ./micro_speech/micro_features/micro_features_generator.cc
+        - file: ./micro_speech/micro_features/micro_model_settings.cc
+        - file: ./micro_speech/micro_features/model.cc
+        - file: ./micro_speech/micro_features/no_micro_features_data.cc
+        - file: ./micro_speech/micro_features/yes_micro_features_data.cc
+    - group: TFL_micro_frontend
+      files:
+        - file: ./micro_speech/microfrontend/lib/fft.cc
+        - file: ./micro_speech/microfrontend/lib/fft_util.cc
+        - file: ./micro_speech/microfrontend/lib/filterbank.c
+        - file: ./micro_speech/microfrontend/lib/filterbank_util.c
+        - file: ./micro_speech/microfrontend/lib/frontend.c
+        - file: ./micro_speech/microfrontend/lib/frontend_util.c
+        - file: ./micro_speech/microfrontend/lib/log_lut.c
+        - file: ./micro_speech/microfrontend/lib/log_scale.c
+        - file: ./micro_speech/microfrontend/lib/log_scale_util.c
+        - file: ./micro_speech/microfrontend/lib/noise_reduction.c
+        - file: ./micro_speech/microfrontend/lib/noise_reduction_util.c
+        - file: ./micro_speech/microfrontend/lib/pcan_gain_control.c
+        - file: ./micro_speech/microfrontend/lib/pcan_gain_control_util.c
+        - file: ./micro_speech/microfrontend/lib/window.c
+        - file: ./micro_speech/microfrontend/lib/window_util.c
+
+  output:
+    type:
+      - lib

@@ -1,0 +1,43 @@
+project:
+
+  debug: on
+
+  packs:
+    - pack: ARM::CMSIS
+      # path: ../
+    - pack: ARM::CMSIS_DFP
+      # path: ../
+    - pack: ARM::CMSIS-View@1.0.0
+    - pack: tensorflow::flatbuffers@1.22.5-rc4
+    - pack: tensorflow::tensorflow-lite-micro@1.22.5-rc4
+
+  add-path:
+    - ../Include/micro_speech
+
+  define:
+    - TF_LITE_STATIC_MEMORY: 1
+
+  components:
+    - component: CMSIS-View:Event Recorder&Semihosting
+    - component: tensorflow::Data Exchange:Serialization:flatbuffers&tensorflow
+    - component: tensorflow::Machine Learning:TensorFlow:Testing
+
+  groups:
+    - group: TFL_main
+      files:
+        - file: ./micro_speech/audio_provider_mock.cc
+        - file: ./micro_speech/command_responder.cc
+        - file: ./micro_speech/feature_provider.cc
+        - file: ./micro_speech/main.cc
+        - file: ./micro_speech/main_functions.cc
+        - file: ./micro_speech/recognize_commands.cc
+    - group: TFL_data
+      files:
+        - file: ./micro_speech/yes_1000ms_sample_data.cc
+        - file: ./micro_speech/no_1000ms_sample_data.cc
+    - group: TFL_model
+      files:
+        - file: $lib(ML_Model)$
+
+  layers:
+    - layer: $Target-Layer$
