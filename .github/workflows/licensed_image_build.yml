@@ -1,19 +1,27 @@
-name: Build and Push Licensed Docker Image 
+# This YAML file is used to build and push a custom Docker image with the necessary tools and dependencies for an ML project
+# It contains a job that builds the Docker image and pushes it to GitHub Container Registry
+
+name: Licensed Docker Image - Build and Push 
 
 on:
+  # Trigger the workflow when a workflow run is completed
   workflow_run:
-    workflows: ["Build and Push Base Docker Image"]
+    workflows: ["Base Docker Image - Build and Push"]
     types:
       - completed
+  # Trigger the workflow manually
+  workflow_dispatch:
 
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
+        # Check out the repository containing the Dockerfile and other necessary files
         uses: actions/checkout@v2
 
       - name: Log in to GitHub Container Registry
+        # Log in to GitHub Container Registry using the actor and a GitHub token
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
@@ -21,24 +29,24 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Format repo slug
+        # Format the repository slug to lowercase for use in the Docker image tags
         id: repo_slug
         run: echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
  
       - name: Pull Base Docker image
+        # Pull the base Docker image from GitHub Container Registry
         run: docker pull ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-
+        
       - name: Create license file (stub)
+        # Create a license file for the Docker image using the ARM UBL license identifier
         run: |
-          docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest -v ${{ github.workspace }}:/var/host /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm activate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker --to-file /var/host/arm_mlops_docker_license
+          docker run -d --name build_container -u root -v ${{ github.workspace }}:/workspace ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest sleep infinity
+          docker exec build_container /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm activate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker --to-file /workspace/arm_mlops_docker_license
           cp ./arm_mlops_docker_license ./docker_licensed/arm_mlops_docker_license
           cat ./docker_licensed/arm_mlops_docker_license
-          docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest -v ${{ github.workspace }}:/var/host /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm deactivate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker 
-
 
       - name: Build and push Docker image
+        # Build the Docker image using the Dockerfile in the `docker_licensed` directory and push it to GitHub Container Registry
         uses: docker/build-push-action@v2
         with:
           context: ./docker_licensed

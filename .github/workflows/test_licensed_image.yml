@@ -1,31 +1,36 @@
-name: Run Test in Docker Container
+# This YAML file is used to test a custom Docker image with the necessary tools and dependencies for an ML project
+# It contains a job that runs tests on a Ubuntu machine using the custom Docker image
+
+name: Licensed Docker Image - Test
 
 on:
+  # Trigger the workflow when a workflow run is completed
   workflow_run:
-    workflows: ["Build and Push Licensed Docker Image"]
+    workflows: ["Licensed Docker Image - Build and Push"]
     types:
       - completed
+  # Trigger the workflow manually
+  workflow_dispatch:
 
 jobs:
   run_test:
     runs-on: ubuntu-latest
+    container:
+      # Use the custom Docker image with the necessary tools and dependencies
+      image: ghcr.io/arm-software/avh-mlops/arm-mlops-docker-licensed:latest
+      credentials:
+        # Set the Docker image credentials using the actor and a GitHub token
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout repository
+        # Check out the repository containing the ML project
         uses: actions/checkout@v2
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Format repo slug
-        id: repo_slug
-        run: echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
-      - name: Pull Docker image
-        run: docker pull ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest
+      - name: Try to execute cbuild
+        # Test if the cbuild command is working in the Docker container
+        run: su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild --version"
 
       - name: Run test command in Docker container
-        run: docker run --rm ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armclang --version
+        # Test if the armclang command is working in the Docker container
+        run: su -l arm_mlops_docker -c"/home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armclang --version"
