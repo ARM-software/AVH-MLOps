@@ -10,6 +10,18 @@ This repository contains:
  
 Refer to the [**ML Developers Guide for Cortex-M Processors and Ethos-U NPU**](https://developer.arm.com/documentation/109267/latest/) for more information.
 
+## Directory Structure
+
+Directory           | Description
+:-------------------|:------------------------------
+[.github/workflows](./.github/workflows)           | GitHub Action workflow definitions
+[AVH-MLOps-main](./AVH-MLOps-main)                 | Simple "Hello World" test project with vcpkg installation for desktop usage
+[Project/TFLmicrospeech](./Project/TFLmicrospeech) | TensorFLow Lite Microspeech example with ML library generation and test execution
+[Target](./Target)                                 | Target layer definitions for all relevant Cortex-M and Ethos-U targets
+[Test](./Test)                                     | Simple "Hello World" test project
+[docker_base](./docker_base)                       | Docker base image with all tools (see Arm Tools Artifactory)
+[docker_licensed](./docker_licensed)               | Import license file into the Docker base image
+
 ## Arm Tools Artifactory
 
 To facilitate tool integration Arm provides critical foundation tools in a tools artifactory. The following tools are installed in the Docker container. In addition utilities such as CMake are installed.
@@ -22,7 +34,7 @@ URL / Tool     | Description
 [artifacts.keil.arm.com/arm-compiler/arm-none-eabi-gcc/](https://artifacts.keil.arm.com/arm-compiler/arm-none-eabi-gcc/) | [Arm GNU Toolchain](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain) (community supported); not recommended for Cortex-M with Helium
 [artifacts.keil.arm.com/arm-compiler/arm-llvm/](https://artifacts.keil.arm.com/arm-compiler/arm-none-eabi-gcc/) | [Arm LLVM Embedded Toolchain](https://learn.arm.com/install-guides/llvm-embedded/) (community supported)
 
-## Github Actions Workflows templates
+## Github Action workflow templates
 
 Four workflows examplify a typical MLOps cycle with the Arm provided Foundation Components for MLOps.
 
@@ -33,7 +45,6 @@ Four workflows examplify a typical MLOps cycle with the Arm provided Foundation 
 **Licensed Docker Image - Test (test_licensed_image.yml)**: Test the docker image with a simplified workflow.
 
 **ML Project - Build and Run on Arm Virtual Hardware FVP (build_ml_library.yml)**: More complex example of a end to end workflow from building a ML Library, test project and to execute it on Arm Virtual Hardware. 
-
 
 ## Customize this repository
 
@@ -53,3 +64,12 @@ FROM ghcr.io/***/***/arm-mlops-docker-base:latest as base
 ```
 
 Check the Actions view to verify the execution of all 4 workflows.
+
+## Known Issues
+
+The following items are at this moment not completed:
+
+- Consistent support for GCC and LLVM compiler. Currently only Arm Compiler 6 is supported.
+- LLVM Compiler is not yet in the tools artifactory and therefore not part of the Docker container.
+- Multiple demo projects for VSI usage (Sensor, Audio, Video) will be added.
+- Arm Virtual Models are not yet available for vcpkg installation; use classic MDK version 5 for using AVH models.
