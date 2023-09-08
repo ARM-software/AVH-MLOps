@@ -16,7 +16,7 @@ Directory           | Description
 :-------------------|:------------------------------
 [.github/workflows](./.github/workflows)           | GitHub Action workflow definitions
 [AVH-MLOps-main](./AVH-MLOps-main)                 | Simple "Hello World" test project with vcpkg installation for desktop usage
-[Project/TFLmicrospeech](./Project/TFLmicrospeech) | TensorFLow Lite Microspeech example with ML library generation and test execution
+[Project/TFLmicrospeech](./Project/TFLmicrospeech) | TensorFLow Lite Microspeech example with ML library generation and test execution. This project runs on all relevant Cortex-M and Ethos-U targets and can be compiled using different toolchains.
 [Target](./Target)                                 | Target layer definitions for all relevant Cortex-M and Ethos-U targets
 [Test](./Test)                                     | Simple "Hello World" test project
 [docker_base](./docker_base)                       | Docker base image with all tools (see Arm Tools Artifactory)
