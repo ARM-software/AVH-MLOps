@@ -40,7 +40,6 @@ First create a fork into a user account or organization of your own (or commit t
 
 1. Add own License Code (Arm UBL license)
 The license code is passed to the docker build process in a Github Actions secret called ARM_UBL_LICENSE_IDENTIFIER.
-
 To set a secret called ARM_UBL_LICENSE_IDENTIFIER to a repository in Github, go to the repository's main page, click on "Settings", then "Secrets", and "New repository secret". Enter "ARM_UBL_LICENSE_IDENTIFIER" as the name and the license code for the Arm UBL license as the value. Click on "Add secret". Remember to limit access to secrets and include a license file in your repository.
 
 2. Customize Base Docker Image
