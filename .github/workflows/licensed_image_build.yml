@@ -9,8 +9,12 @@ on:
     workflows: ["Base Docker Image - Build and Push"]
     types:
       - completed
+  # Trigger the workflow nightly
+  schedule:
+    - cron: '0 0 * * *'
   # Trigger the workflow manually
   workflow_dispatch:
+
 
 jobs:
   build_and_push:

@@ -20,3 +20,36 @@ URL / Tool     | Description
 [artifacts.keil.arm.com/arm-compiler/](https://artifacts.keil.arm.com/arm-compiler/)      | [Arm Compiler for Embedded](https://developer.arm.com/Tools%20and%20Software/Arm%20Compiler%20for%20Embedded) (commercial)
 [artifacts.keil.arm.com/arm-compiler/arm-none-eabi-gcc/](https://artifacts.keil.arm.com/arm-compiler/arm-none-eabi-gcc/) | [Arm GNU Toolchain](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain) (community supported); not recommended for Cortex-M with Helium
 [artifacts.keil.arm.com/arm-compiler/arm-llvm/](https://artifacts.keil.arm.com/arm-compiler/arm-none-eabi-gcc/) | [Arm LLVM Embedded Toolchain](https://learn.arm.com/install-guides/llvm-embedded/) (community supported)
+
+## Github Actions Workflows templates
+
+Four workflows examplify a typical MLOps cycle with the Arm provided Foundation Components for MLOps.
+
+**Base Docker Image - Build and Push (base_image_build.yml)**: Build a docker image that has all tools mentioned before installed and configured. It will be stored on the Github docker registry for fast access to the image.
+
+**Licensed Docker Image - Build and Push (licensed_image_build.yml)**: Based on the Base docker image, this workflow adds your own license supplied by Arm for the commercial tools. It will also be stored on the Github docker registry. It will be build nightly and will be the image that actual container run-times will be spawned from.
+
+**Licensed Docker Image - Test (test_licensed_image.yml)**: Test the docker image with a simplified workflow.
+
+**ML Project - Build and Run on Arm Virtual Hardware FVP (build_ml_library.yml)**: More complex example of a end to end workflow from building a ML Library, test project and to execute it on Arm Virtual Hardware. 
+
+
+## Customize this repository
+
+First create a fork into a user account or organization of your own (or commit to a new private repository). On your fork you need to make a couple of modifications:
+
+### Add own License Code (Arm UBL license)
+The license code is passed to the docker build process in a Github Actions secret called ARM_UBL_LICENSE_IDENTIFIER.
+
+To set a secret called ARM_UBL_LICENSE_IDENTIFIER to a repository in Github, go to the repository's main page, click on "Settings", then "Secrets", and "New repository secret". Enter "ARM_UBL_LICENSE_IDENTIFIER" as the name and the license code for the Arm UBL license as the value. Click on "Add secret". Remember to limit access to secrets and include a license file in your repository.
+
+### Customize Base Docker Image
+Additional installations for custom tools you can add those to docker_base/Dockerfile. If you are new to Docker find a good starting point in the [Docker manual](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
+
+### Retarget Licensed Docker Image to your Base Image
+Open docker_licensed/Docker and edit the first line to match the repository your fork is located on.
+```
+FROM ghcr.io/***/***/arm-mlops-docker-base:latest as base
+```
+
+Check the Actions view to verify the execution of all 4 workflows.
