@@ -4,10 +4,11 @@ Arm provides a set of foundation tools and software components to enable MLOps s
 This repository contains:
 
 - Setup of a Docker container with foundation tools for MLOps systems.
-- A template project `MLOps.csolution.yml`. It uses a compiler to create a library with a trained ML model. The ML model performance is measured using Arm Virtual Hardware (AVH) FVP Models. 
-- An example that shows the usage of the foundation components.
+- GitHub Actions that demonstrate typical MLOps workflows such as:
+  - Create a library with a trained ML model with different compilers and for different target processors
+  - Measured performance (inference time) of an ML model using Arm Virtual Hardware (AVH) FVP Models.
  
-Refer to the [**Cortex-M and Ethos-U ML Developer Guide**](https://developer.arm.com/documentation/109267/latest/) for more information.
+Refer to the [**ML Developers Guide for Cortex-M Processors and Ethos-U NPU**](https://developer.arm.com/documentation/109267/latest/) for more information.
 
 ## Arm Tools Artifactory
 
