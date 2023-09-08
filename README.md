@@ -40,12 +40,12 @@ First create a fork into a user account or organization of your own (or commit t
 
 1. Add own License Code (Arm UBL license)
 The license code is passed to the docker build process in a Github Actions secret called ARM_UBL_LICENSE_IDENTIFIER.
-To set a secret called ARM_UBL_LICENSE_IDENTIFIER to a repository in Github, go to the repository's main page, click on "Settings", then "Secrets", and "New repository secret". Enter "ARM_UBL_LICENSE_IDENTIFIER" as the name and the license code for the Arm UBL license as the value. Click on "Add secret". Remember to limit access to secrets and include a license file in your repository.
+To set a secret called ARM_UBL_LICENSE_IDENTIFIER to a repository in Github, go to the repository's main page, click on "Settings", then "Secrets", and "New repository secret". Enter "ARM_UBL_LICENSE_IDENTIFIER" as the name and the license code for the Arm UBL license as the value. Click on "Add secret". 
 
 2. Customize Base Docker Image
 Additional installations for custom tools you can add those to docker_base/Dockerfile. If you are new to Docker find a good starting point in the [Docker manual](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
 
-3. Retarget Licensed Docker Image to your Base Image
+3. Retarget Licensed Docker Image to your Base Image. 
 Open docker_licensed/Docker and edit the first line to match the repository your fork is located on.
 ```
 FROM ghcr.io/***/***/arm-mlops-docker-base:latest as base
