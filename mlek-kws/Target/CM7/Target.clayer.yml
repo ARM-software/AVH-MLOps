@@ -1,0 +1,23 @@
+layer:
+  type: Target
+  description: Cortex-M7 target components and files
+
+  packs:
+    - pack: ARM::CMSIS
+    - pack: ARM::CMSIS_DFP
+
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: Device:Startup&C Startup
+
+  linker:
+    - regions: ./RTE/Device/ARMCM7/regions_ARMCM7.h
+
+  groups:
+    - group: Board
+      files:
+        - file: ./Include/BoardInit.hpp
+        - file: ./Source/BoardInit.cpp
+    - group: FVP
+      files:
+        - file: ./fvp_config.txt

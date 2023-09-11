@@ -1,0 +1,23 @@
+layer:
+  type: Target
+  description: Cortex-M4 target components and files
+
+  packs:
+    - pack: ARM::CMSIS
+    - pack: ARM::CMSIS_DFP
+
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: Device:Startup&C Startup
+
+  linker:
+    - regions: ./RTE/Device/ARMCM4/regions_ARMCM4.h
+
+  groups:
+    - group: Board
+      files:
+        - file: ./Include/BoardInit.hpp
+        - file: ./Source/BoardInit.cpp
+    - group: FVP
+      files:
+        - file: ./fvp_config.txt

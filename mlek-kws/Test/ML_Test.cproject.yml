@@ -1,0 +1,42 @@
+project:
+
+  debug: on
+
+  packs:
+    - pack: ARM::CMSIS-DSP@1.14.4
+    - pack: ARM::CMSIS-View@1.0.0
+    - pack: ARM::ml-embedded-eval-kit-uc-api@22.8.0-Beta
+    - pack: tensorflow::flatbuffers@1.22.8
+    - pack: tensorflow::tensorflow-lite-micro@1.22.8
+
+  add-path:
+    - ../Include
+    - ../Model/include
+
+  define:
+    - ACTIVATION_BUF_SZ: 131072
+    - TF_LITE_STATIC_MEMORY: 1
+
+  components:
+    - component: ARM::CMSIS:DSP&Source
+    - component: CMSIS-View:Event Recorder&Semihosting
+    - component: tensorflow::Data Exchange:Serialization:flatbuffers
+    - component: tensorflow::Machine Learning:TensorFlow:Testing
+    - component: ARM::ML Eval Kit:Common:API
+    - component: ARM::ML Eval Kit:Common:Log
+    - component: ARM::ML Eval Kit:Common:Math
+    - component: ARM::ML Eval Kit:Voice:Keyword spotting
+
+  groups:
+    - group: main
+      files:
+        - file: ./include/InputFiles.hpp
+        - file: ./src/InputFiles.cpp
+        - file: ./src/sample_audio.cpp
+        - file: ./src/main_wav.cpp
+    - group: model
+      files:
+        - file: $lib(ML_Model)$
+
+  layers:
+    - layer: $Target-Layer$

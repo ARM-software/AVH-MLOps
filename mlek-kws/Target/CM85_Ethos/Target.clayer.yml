@@ -1,0 +1,29 @@
+layer:
+  type: Target
+  description: Cortex-M85 with Ethos-U target components and files
+
+  packs:
+    - pack: ARM::CMSIS
+    - pack: ARM::V2M_MPS3_SSE_310_BSP@1.2.0
+    - pack: Arm::ethos-u-core-driver@1.22.8
+
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: Arm::Machine Learning:NPU Support:Ethos-U Driver&Generic U65
+    - component: ARM::Device:Definition
+    - component: ARM::Device:Startup&Baremetal
+    - component: ARM::Native Driver:SysCounter
+    - component: ARM::Native Driver:SysTimer
+    - component: ARM::Native Driver:Timeout
+
+  linker:
+    - script: ./RTE/Device/SSE-310-MPS3_FVP/mps3-sse-310.sct
+
+  groups:
+    - group: Board
+      files:
+        - file: ./Include/BoardInit.hpp
+        - file: ./Source/BoardInit.cpp
+    - group: FVP
+      files:
+        - file: ./fvp_config.txt

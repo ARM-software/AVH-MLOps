@@ -1,0 +1,96 @@
+project:
+
+  debug: off
+
+  packs:
+    - pack: ARM::CMSIS@5.9.0
+    - pack: ARM::CMSIS-DSP@1.14.4
+    - pack: ARM::CMSIS-NN@4.0.0
+    - pack: Arm::ethos-u-core-driver@1.22.8
+    - pack: ARM::ml-embedded-eval-kit-uc-api@22.8.0-Beta
+    - pack: tensorflow::flatbuffers@1.22.8
+    - pack: tensorflow::gemmlowp@1.22.8
+    - pack: tensorflow::kissfft@1.22.8
+    - pack: tensorflow::ruy@1.22.8
+    - pack: tensorflow::tensorflow-lite-micro@1.22.8
+
+  misc:
+    - for-compiler: AC6
+      CPP:
+        - -fno-exceptions
+        - -fno-rtti
+    - for-compiler: GCC
+      CPP:
+        - -fno-exceptions
+        - -fno-rtti
+
+  add-path:
+    - ../Include
+
+  define:
+    - ACTIVATION_BUF_SZ: 131072
+
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: ARM::CMSIS:DSP&Source
+    - component: ARM::CMSIS:NN Lib
+    - component: tensorflow::Data Exchange:Serialization:flatbuffers
+    - component: tensorflow::Data Processing:Math:gemmlowp fixed-point
+    - component: tensorflow::Data Processing:Math:kissfft
+    - component: tensorflow::Data Processing:Math:ruy
+    - component: tensorflow::Machine Learning:TensorFlow:Kernel&CMSIS-NN
+      for-context:
+        - +CM0
+        - +CM0plus
+        - +CM3
+        - +CM4
+        - +CM4_FP
+        - +CM7
+        - +CM23
+        - +CM33
+        - +CM55
+        - +CM85
+    - component: tensorflow::Machine Learning:TensorFlow:Kernel&Ethos-U
+      for-context:
+        - +CM55_Ethos
+        - +CM85_Ethos
+    - component: tensorflow::Machine Learning:TensorFlow:Kernel Utils
+    - component: tensorflow::Machine Learning:TensorFlow:Testing
+    - component: Arm::Machine Learning:NPU Support:Ethos-U Driver&Generic U55
+      for-context:
+      - +CM55_Ethos
+    - component: Arm::Machine Learning:NPU Support:Ethos-U Driver&Generic U65
+      for-context:
+      - +CM85_Ethos
+    - component: ARM::ML Eval Kit:Common:API
+    - component: ARM::ML Eval Kit:Common:Log
+    - component: ARM::ML Eval Kit:Common:Math
+    - component: ARM::ML Eval Kit:Voice:Keyword spotting
+
+  groups:
+    - group: model
+      files:
+        - file: ./include/Labels.hpp
+        - file: ./src/Labels.cpp
+        - file: ./src/kws_micronet_m.tflite.cpp
+          for-context:
+            - +CM0
+            - +CM0plus
+            - +CM3
+            - +CM4
+            - +CM4_FP
+            - +CM7
+            - +CM23
+            - +CM33
+            - +CM55
+            - +CM85
+        - file: ./src/kws_micronet_m_vela_H256.tflite.cpp
+          for-context:
+            - +CM55_Ethos
+        - file: ./src/kws_micronet_m_vela_Y256.tflite.cpp
+          for-context:
+            - +CM85_Ethos
+
+  output:
+    type:
+      - lib
