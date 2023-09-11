@@ -13,17 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-// This data was created from the PCM data in a WAV file held in v2 of the
-// Speech Commands test dataset, at the path:
-// speech_commands_test_set_v0.02/yes/f2e59fea_nohash_1.wav
-// This should contain all 16,000 samples from the one-second file.
-
-#ifndef TENSORFLOW_LITE_MICRO_EXAMPLES_MICRO_SPEECH_YES_1000MS_SAMPLE_DATA_H_
-#define TENSORFLOW_LITE_MICRO_EXAMPLES_MICRO_SPEECH_YES_1000MS_SAMPLE_DATA_H_
-
 #include <cstdint>
 
-extern const int g_yes_1000ms_sample_data_size;
-extern const int16_t g_yes_1000ms_sample_data[];
-
-#endif  // TENSORFLOW_LITE_MICRO_EXAMPLES_MICRO_SPEECH_YES_1000MS_SAMPLE_DATA_H_
+extern const unsigned int g_yes_30ms_audio_data_size;
+extern const int16_t g_yes_30ms_audio_data[];

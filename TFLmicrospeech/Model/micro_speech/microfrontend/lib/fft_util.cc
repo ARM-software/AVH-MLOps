@@ -16,11 +16,7 @@ limitations under the License.
 
 #include <stdio.h>
 
-#define FIXED_POINT 16
-#include "kiss_fft.h"
-#include "tools/kiss_fftr.h"
-
-#include "arm_math.h"
+#include "microfrontend/lib/kiss_fft_int16.h"
 
 int FftPopulateState(struct FftState* state, size_t input_size) {
   state->input_size = input_size;
@@ -43,24 +39,9 @@ int FftPopulateState(struct FftState* state, size_t input_size) {
     return 0;
   }
 
-#ifndef USE_KISS_FFT
-    arm_rfft_instance_q15 * cmsisFft;
-
-    cmsisFft = (arm_rfft_instance_q15 *)malloc(sizeof(arm_rfft_instance_q15));
-    if (cmsisFft == nullptr) {
-       fprintf(stderr, "Failed to alloc cmsis fft context\n");
-       return 0;
-    }
-    if (arm_rfft_init_q15(cmsisFft, state->fft_size, 0, 1) != ARM_MATH_SUCCESS) {
-       fprintf(stderr, "Failed to init cmsis fft \n");
-       return 0;
-    }
-
-    state->scratch = cmsisFft;
-#else
   // Ask kissfft how much memory it wants.
   size_t scratch_size = 0;
-  kiss_fftr_cfg kfft_cfg = kiss_fftr_alloc(
+  kissfft_fixed16::kiss_fftr_cfg kfft_cfg = kissfft_fixed16::kiss_fftr_alloc(
       state->fft_size, 0, nullptr, &scratch_size);
   if (kfft_cfg != nullptr) {
     fprintf(stderr, "Kiss memory sizing failed.\n");
@@ -73,13 +54,12 @@ int FftPopulateState(struct FftState* state, size_t input_size) {
   }
   state->scratch_size = scratch_size;
   // Let kissfft configure the scratch space we just allocated
-  kfft_cfg = kiss_fftr_alloc(state->fft_size, 0,
+  kfft_cfg = kissfft_fixed16::kiss_fftr_alloc(state->fft_size, 0,
                                               state->scratch, &scratch_size);
   if (kfft_cfg != state->scratch) {
     fprintf(stderr, "Kiss memory preallocation strategy failed.\n");
     return 0;
   }
-#endif
   return 1;
 }
 

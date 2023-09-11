@@ -8,8 +8,9 @@ project:
     - pack: ARM::CMSIS_DFP
       # path: ../
     - pack: ARM::CMSIS-View@1.0.0
-    - pack: tensorflow::flatbuffers@1.22.5-rc4
-    - pack: tensorflow::tensorflow-lite-micro@1.22.5-rc4
+    - pack: tensorflow::flatbuffers@1.23.2
+    - pack: tensorflow::gemmlowp@1.23.2
+    - pack: tensorflow::tensorflow-lite-micro@1.23.2
 
   add-path:
     - ../Include/micro_speech
@@ -20,6 +21,7 @@ project:
   components:
     - component: CMSIS-View:Event Recorder&Semihosting
     - component: tensorflow::Data Exchange:Serialization:flatbuffers&tensorflow
+    - component: tensorflow::Data Processing:Math:gemmlowp fixed-point&tensorflow
     - component: tensorflow::Machine Learning:TensorFlow:Testing
 
   groups:
@@ -33,8 +35,8 @@ project:
         - file: ./micro_speech/recognize_commands.cc
     - group: TFL_data
       files:
-        - file: ./micro_speech/yes_1000ms_sample_data.cc
-        - file: ./micro_speech/no_1000ms_sample_data.cc
+        - file: ./micro_speech/testdata/yes_1000ms_audio_data.cc
+        - file: ./micro_speech/testdata/no_1000ms_audio_data.cc
     - group: TFL_model
       files:
         - file: $lib(ML_Model)$

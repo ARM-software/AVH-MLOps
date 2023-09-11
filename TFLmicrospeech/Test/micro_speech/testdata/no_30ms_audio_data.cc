@@ -1,4 +1,4 @@
-/* Copyright 2018 The TensorFlow Authors. All Rights Reserved.
+/* Copyright 2019 The TensorFlow Authors. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,12 +13,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-// See the header for documentation on the meaning of this data.
+#include "no_30ms_audio_data.h"
 
-#include "no_30ms_sample_data.h"
-
-const int g_no_30ms_sample_data_size = 480;
-const int16_t g_no_30ms_sample_data[480] = {
+const unsigned int g_no_30ms_audio_data_size = 480;
+alignas(16) const int16_t g_no_30ms_audio_data[] = {
     5713,  5735,  5735,  5737,  5701,  5691,  5656,  5633,  5611,  5552,  5475,
     5394,  5293,  5177,  5064,  4924,  4737,  4599,  4420,  4237,  4048,  3828,
     3623,  3413,  3183,  2915,  2622,  2308,  1980,  1657,  1261,  901,   549,

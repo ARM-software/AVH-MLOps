@@ -16,90 +16,23 @@ limitations under the License.
 #include "audio_provider.h"
 
 #include "micro_features/micro_model_settings.h"
-#include "audio_drv.h"
-
-#define AUDIO_BLOCK_NUM         (4)
-#define AUDIO_BLOCK_SIZE        (3200)
-#define AUDIO_BUFFER_SIZE       (AUDIO_BLOCK_NUM*AUDIO_BLOCK_SIZE)
 
 namespace {
-bool    g_is_audio_initialized = false;
-bool    g_is_audio_ready = false;
-__attribute__((aligned(4)))
-int16_t g_audio_buf [AUDIO_BUFFER_SIZE/2];
-int16_t g_audio_data[kMaxAudioSampleSize];
+int16_t g_dummy_audio_data[kMaxAudioSampleSize];
 int32_t g_latest_audio_timestamp = 0;
 }  // namespace
 
-extern "C" void AudioRxEvent (void);
-
-static void AudioEvent (uint32_t event) {
-  if (!g_is_audio_ready) {
-    g_is_audio_ready = true;
-    return;
-  }
-  if (event & AUDIO_DRV_EVENT_RX_DATA) {
-    g_latest_audio_timestamp += ((AUDIO_BLOCK_SIZE/2) * 1000) / kAudioSampleFrequency;
-#ifdef __EVENT_DRIVEN
-    AudioRxEvent();
-#endif
-  }
-}
-
-static int32_t AudioDrv_Setup(void) {
-  int32_t ret;
-
-  ret = AudioDrv_Initialize(AudioEvent);
-  if (ret != 0) {
-    return ret;
-  }
-
-  ret = AudioDrv_Configure(AUDIO_DRV_INTERFACE_RX,
-                           1U,  /* single channel */
-                           16U, /* 16 sample bits */
-                           static_cast<uint32_t>(kAudioSampleFrequency));
-  if (ret != 0) {
-    return ret;
-  }
-
-  ret = AudioDrv_SetBuf(AUDIO_DRV_INTERFACE_RX,
-                        g_audio_buf, AUDIO_BLOCK_NUM, AUDIO_BLOCK_SIZE);
-  if (ret != 0) {
-    return ret;
-  }
-
-  ret = AudioDrv_Control(AUDIO_DRV_CONTROL_RX_ENABLE);
-  if (ret != 0) {
-    return ret;
-  }
-
-  return 0;
-}
-
-TfLiteStatus GetAudioSamples(tflite::ErrorReporter* error_reporter,
-                             int start_ms, int duration_ms,
+TfLiteStatus GetAudioSamples(int start_ms, int duration_ms,
                              int* audio_samples_size, int16_t** audio_samples) {
-
-  if (!g_is_audio_initialized) {
-    int32_t ret = AudioDrv_Setup();
-    if (ret != 0) {
-      return kTfLiteError;
-    }
-    g_is_audio_initialized = true;
-  }
-
-  const int start_sample     = (start_ms    * kAudioSampleFrequency) / 1000;
-  const int duration_samples = (duration_ms * kAudioSampleFrequency) / 1000;
-  for (int i = 0; i < duration_samples; ++i) {
-    const int sample_index = (start_sample + i) % (AUDIO_BUFFER_SIZE/2);
-    g_audio_data[i] = g_audio_buf[sample_index];
+  for (int i = 0; i < kMaxAudioSampleSize; ++i) {
+    g_dummy_audio_data[i] = 0;
   }
   *audio_samples_size = kMaxAudioSampleSize;
-  *audio_samples = g_audio_data;
-
+  *audio_samples = g_dummy_audio_data;
   return kTfLiteOk;
 }
 
 int32_t LatestAudioTimestamp() {
+  g_latest_audio_timestamp += 100;
   return g_latest_audio_timestamp;
 }

@@ -15,7 +15,7 @@ limitations under the License.
 #ifndef TENSORFLOW_LITE_EXPERIMENTAL_MICROFRONTEND_LIB_FFT_UTIL_H_
 #define TENSORFLOW_LITE_EXPERIMENTAL_MICROFRONTEND_LIB_FFT_UTIL_H_
 
-#include "fft.h"
+#include "microfrontend/lib/fft.h"
 
 #ifdef __cplusplus
 extern "C" {

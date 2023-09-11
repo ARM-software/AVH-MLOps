@@ -16,49 +16,6 @@ limitations under the License.
 
 #include <string.h>
 
-#ifdef __ARM_FEATURE_MVE
-
-#include <arm_mve.h>
-
-static int16_t arm_win_process_samples_mve(const int16_t * pSrc,
-                                const int16_t * pCoef, uint32_t blockSize, int16_t * pResult)
-{
-    int32_t         blkSize = blockSize;
-    int16x8_t       curExtremValVec = vdupq_n_s16(0);
-    int16_t         maxValue = 0;
-
-    int16x8_t       vecSrc = vld1q(pSrc);
-    pSrc += 8;
-
-    do {
-        mve_pred16_t    p = vctp16q(blkSize);
-        int16x8_t       vecDst, vecCoef;
-
-        vecCoef = vld1q_z(pCoef, p);
-
-        /* long multiply + narrowing */
-        vecDst = vuninitializedq_s16();
-        vecDst = vqshrnbq_m_n_s32(vecDst, vmullbq_int(vecSrc, vecCoef), kFrontendWindowBits, p);
-        vecDst = vqshrntq_m_n_s32(vecDst, vmulltq_int(vecSrc, vecCoef), kFrontendWindowBits, p);
-
-        vecSrc = vld1q_z(pSrc, p);
-
-        vst1q_p(pResult, vecDst, p);
-
-        curExtremValVec = vmaxq_m(vecDst, vabsq(vecDst), curExtremValVec, p);
-
-        blkSize -= 8;
-        pSrc += 8;
-        pCoef += 8;
-        pResult += 8;
-
-    }
-    while (blkSize > 0);
-
-    return (vmaxvq(maxValue, curExtremValVec));
-}
-#endif
-
 int WindowProcessSamples(struct WindowState* state, const int16_t* samples,
                          size_t num_samples, size_t* num_samples_read) {
   const int size = state->size;
@@ -84,8 +41,6 @@ int WindowProcessSamples(struct WindowState* state, const int16_t* samples,
   int16_t* output = state->output;
   int i;
   int16_t max_abs_output_value = 0;
-#ifndef __ARM_FEATURE_MVE
-
   for (i = 0; i < size; ++i) {
     int16_t new_value =
         (((int32_t)*input++) * *coefficients++) >> kFrontendWindowBits;
@@ -97,10 +52,6 @@ int WindowProcessSamples(struct WindowState* state, const int16_t* samples,
       max_abs_output_value = new_value;
     }
   }
-#else
-   max_abs_output_value = arm_win_process_samples_mve(input, coefficients, size, output);
-#endif
-
   // Shuffle the input down by the step size, and update how much we have used.
   memmove(state->input, state->input + state->step,
           sizeof(*state->input) * (state->size - state->step));

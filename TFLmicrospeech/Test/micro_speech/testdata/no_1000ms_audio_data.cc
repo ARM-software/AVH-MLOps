@@ -13,12 +13,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-// See the header for documentation on the meaning of this data.
+#include "no_1000ms_audio_data.h"
 
-#include "no_1000ms_sample_data.h"
-
-const int g_no_1000ms_sample_data_size = 16000;
-const int16_t g_no_1000ms_sample_data[16000] = {
+const unsigned int g_no_1000ms_audio_data_size = 16000;
+alignas(16) const int16_t g_no_1000ms_audio_data[] = {
     5,     1,     -10,   -16,   -14,   -10,   -4,    -5,    -10,   -15,   -13,
     -17,   -22,   -21,   -23,   -25,   -22,   -26,   -28,   -31,   -28,   -25,
     -20,   -24,   -21,   -13,   -7,    -1,    -1,    3,     3,     4,     -4,

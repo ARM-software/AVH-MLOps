@@ -1,4 +1,4 @@
-/* Copyright 2018 The TensorFlow Authors. All Rights Reserved.
+/* Copyright 2019 The TensorFlow Authors. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,12 +13,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-// See the header for documentation on the meaning of this data.
+#include "yes_30ms_audio_data.h"
 
-#include "yes_30ms_sample_data.h"
-
-const int g_yes_30ms_sample_data_size = 480;
-const int16_t g_yes_30ms_sample_data[480] = {
+const unsigned int g_yes_30ms_audio_data_size = 480;
+alignas(16) const int16_t g_yes_30ms_audio_data[] = {
     -876,   -470,   510,   803,   170,   -787,   -1568,  -1893,  -1598, -1027,
     -992,   -1803,  -2610, -2484, -1905, -2113,  -3113,  -3399,  -2267, -1261,
     -2007,  -3637,  -3909, -2340, -893,  -1158,  -2272,  -2486,  -1639, -915,

@@ -19,9 +19,11 @@
 #define RTE_CMSIS_View_EventRecorder
         #define RTE_CMSIS_View_EventRecorder_DAP
         #define RTE_CMSIS_View_EventRecorder_Semihosting
-/* tensorflow::Data Exchange:Serialization:flatbuffers:tensorflow:1.22.5-rc4 */
+/* tensorflow::Data Exchange:Serialization:flatbuffers:tensorflow:1.23.2 */
 #define RTE_DataExchange_Serialization_flatbuffers     /* flatbuffers */
-/* tensorflow::Machine Learning:TensorFlow:Testing:1.22.5-rc4 */
+/* tensorflow::Data Processing:Math:gemmlowp fixed-point:tensorflow:1.23.2 */
+#define RTE_DataExchange_Math_gemmlowp     /* gemmlowp */
+/* tensorflow::Machine Learning:TensorFlow:Testing:1.23.2 */
 #define RTE_ML_TF_LITE     /* TF */
 
 
