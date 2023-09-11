@@ -17,7 +17,7 @@
 //   <o> Region size [bytes] <0x0-0xFFFFFFFF:8>
 //   <i> Defines size of memory region.
 //   <i> Default: 0x00200000
-#define __ROM0_SIZE 0x00070000
+#define __ROM0_SIZE 0x00080000
 //   <q>Default region
 //   <i> Enables memory region globally for the application.
 #define __ROM0_DEFAULT 1
@@ -30,11 +30,11 @@
 //   <o> Base address <0x0-0xFFFFFFFF:8>
 //   <i> Defines base address of memory region.
 //   <i> Default: 0x00200000
-#define __ROM1_BASE 0x00070000
+#define __ROM1_BASE 0x01000000
 //   <o> Region size [bytes] <0x0-0xFFFFFFFF:8>
 //   <i> Defines size of memory region.
 //   <i> Default: 0x00200000
-#define __ROM1_SIZE 0x00010000
+#define __ROM1_SIZE 0x00100000
 //   <q>Default region
 //   <i> Enables memory region globally for the application.
 #define __ROM1_DEFAULT 0
