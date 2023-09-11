@@ -1,6 +1,6 @@
 # TensorFlow Lite Micro Speech
 
-Base Directory: `Project/TFLmicrospeech`
+Base Directory: `TFLmicrospeech`
 
 ## Solution
 
@@ -80,17 +80,17 @@ Examples:
 
 Run command syntax:
 
-`<model-executable> -f ../../Target/<target_type>/fvp_config.txt ./out/ML_test/<target-type>/<build-type>/ML_Test.axf`
+`<model-executable> -f ./Target/<target_type>/fvp_config.txt ./out/ML_test/<target-type>/<build-type>/ML_Test.axf`
 
 Examples:
 
 - Run Test on model for Cortex-M3 (size)
 ```sh
-VHT_MPS2_Cortex-M3 -f ../../Target/CM3/fvp_config.txt ./out/ML_Test/CM3/size/ML_Test.axf
+VHT_MPS2_Cortex-M3 -f ./Target/CM3/fvp_config.txt ./out/ML_Test/CM3/size/ML_Test.axf
 ```
 - Run Test on model for Cortex-M55 with Ethos (size)
 ```sh
-VHT_Corstone_SSE-300_Ethos-U55 -f ../../Target/CM55_Ethos/fvp_config.txt ./out/ML_Test/CM55_Ethos/size/ML_Test.axf
+VHT_Corstone_SSE-300_Ethos-U55 -f ./Target/CM55_Ethos/fvp_config.txt ./out/ML_Test/CM55_Ethos/size/ML_Test.axf
 ```
 
 ## Show Test timing
