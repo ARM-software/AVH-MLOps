@@ -10,6 +10,13 @@ project:
     - pack: tensorflow::ruy@1.22.5-rc4
     - pack: tensorflow::tensorflow-lite-micro@1.22.5-rc4
 
+  misc:
+    - for-compiler: GCC
+      CPP:
+        - -fno-rtti
+        - -fno-exceptions
+        - -fno-threadsafe-statics
+
   add-path:
     - ../Include/micro_speech
     - ./micro_speech
