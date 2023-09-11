@@ -53,4 +53,4 @@ jobs:
       - name: Execute Test Project on Cortex-M55 Arm Virtual Hardware FVP
         # Execute the test project on Cortex-M55 Arm Virtual Hardware FVP
         run: |
-             su - arm_mlops_docker -c "LD_LIBRARY_PATH=/home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/ /home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/VHT_Corstone_SSE-300_Ethos-U55 -f /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/Target/CM55_Ethos/fvp_config.txt /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/out/ML_Test/CM55/size/ML_Test.axf --simlimit 22"
+             su - arm_mlops_docker -c "LD_LIBRARY_PATH=/home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/ /home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/VHT_MPS3_Corstone_SSE-300 -f /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/Target/CM55_Ethos/fvp_config.txt /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/out/ML_Test/CM55/size/ML_Test.axf --simlimit 12"
