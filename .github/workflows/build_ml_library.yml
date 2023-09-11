@@ -41,14 +41,14 @@ jobs:
       - name: Build Model for Cortex-M55 with AC6 (size)
         # Build the ML model for Cortex-M55 using AC6 toolchain and size optimization
         run: |
-             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/Project/TFLmicrospeech/MLOps.csolution.yml --packs --context ML_Model.size+CM55 --toolchain AC6"
+             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/MLOps.csolution.yml --packs --context ML_Model.size+CM55 --toolchain AC6"
 
       - name: Build Test Project for Cortex-M55 with AC6 (size)
         # Build the test project for Cortex-M55 using AC6 toolchain and size optimization
         run: |
-             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/Project/TFLmicrospeech/MLOps.csolution.yml --packs --context ML_Test.size+CM55 --update-rte --toolchain AC6"
+             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/MLOps.csolution.yml --packs --context ML_Test.size+CM55 --update-rte --toolchain AC6"
 
       - name: Execute Test Project on Cortex-M55 Arm Virtual Hardware FVP
         # Execute the test project on Cortex-M55 Arm Virtual Hardware FVP
         run: |
-             su - arm_mlops_docker -c "LD_LIBRARY_PATH=/home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/ /home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/VHT_Corstone_SSE-300_Ethos-U55 -f /__w/AVH-MLOps/AVH-MLOps/Target/CM55_Ethos/fvp_config.txt /__w/AVH-MLOps/AVH-MLOps/Project/TFLmicrospeech/out/ML_Test/CM55/size/ML_Test.axf --simlimit 22"
+             su - arm_mlops_docker -c "LD_LIBRARY_PATH=/home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/ /home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/VHT_Corstone_SSE-300_Ethos-U55 -f /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/Target/CM55_Ethos/fvp_config.txt /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/out/ML_Test/CM55/size/ML_Test.axf --simlimit 22"
