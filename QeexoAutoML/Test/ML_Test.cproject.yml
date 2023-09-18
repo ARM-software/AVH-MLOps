@@ -1,0 +1,39 @@
+project:
+
+  debug: on
+
+  packs:
+    - pack: ARM::CMSIS
+      # path: ../
+    - pack: ARM::CMSIS_DFP
+      # path: ../
+    - pack: ARM::CMSIS-View@1.0.0
+    - pack: ARM::CMSIS-DSP
+    - pack: ARM::CMSIS-RTX
+
+  add-path:
+    - ../Include
+    - ./sensor_data
+
+  components:
+    - component: Device:OS Tick
+    - component: ARM::CMSIS:DSP&Source
+    - component: ARM::CMSIS:RTOS2:Keil RTX5&Source
+    - component: CMSIS-View:Event Recorder&Semihosting
+
+  groups:
+    - group: main
+      files:
+        - file: ./include/main.h
+        - file: ./src/main.c
+        - file: ./src/NativeFunctions.c
+    - group: sensor_data
+      files:
+        - file: ./sensor_data/sensor_data.c
+    - group: QeexoAutoML
+      files:
+        - file: ./src/QxAutoMLWork.c
+        - file: ../Lib/libQxClassifyEngine.a
+
+  layers:
+    - layer: $Target-Layer$
