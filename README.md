@@ -69,6 +69,5 @@ Check the Actions view to verify the execution of all 4 workflows.
 The following items are at this moment not completed:
 
 - Consistent support for GCC and LLVM compiler. Currently only Arm Compiler 6 is supported.
-- LLVM Compiler is not yet in the tools artifactory and therefore not part of the Docker container.
 - Multiple demo projects for VSI usage (Sensor, Audio, Video) will be added.
 - Arm Virtual Models are not yet available for vcpkg installation; use classic MDK version 5 for using AVH models.
