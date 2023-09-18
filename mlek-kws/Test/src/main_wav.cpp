@@ -39,6 +39,13 @@
 #include CMSIS_device_header /* Gives us IRQ num, base addresses. */
 #include "BoardInit.hpp"      /* Board initialisation */
 #include "log_macros.h"      /* Logging macros (optional) */
+#ifdef RTE_CMSIS_View_EventRecorder
+#include "EventRecorder.h"
+#else
+#define EventRecorderInitialize(recording, start) 
+#define EventStartCv(slot, v1, v2)
+#define EventStopCv(slot, v1, v2)
+#endif
 
 namespace arm {
 namespace app {
@@ -61,6 +68,8 @@ int main()
 {
     /* Initialise the UART module to allow printf related functions (if using retarget) */
     BoardInit();
+
+    EventRecorderInitialize(EventRecordAll, 1U);
 
     /* Model object creation and initialisation. */
     arm::app::MicroNetKwsModel model;
@@ -142,21 +151,27 @@ int main()
             "Inference %zu/%zu\n", audioDataSlider.Index() + 1, audioDataSlider.TotalStrides() + 1);
 
         /* Run the pre-processing, inference and post-processing. */
+        EventStartCv(0, 0, 0);
         if (!preProcess.DoPreProcess(inferenceWindow,
                                      arm::app::audio::MicroNetKwsMFCC::ms_defaultSamplingFreq)) {
             printf_err("Pre-processing failed.");
             return 1;
         }
+        EventStopCv(0, 0, 0);
 
+        EventStartCv(1, 0, 0);
         if (!model.RunInference()) {
             printf_err("Inference failed.");
             return 2;
         }
+        EventStopCv(1, 0, 0);
 
+        EventStartCv(2, 0, 0);
         if (!postProcess.DoPostProcess()) {
             printf_err("Post-processing failed.");
             return 3;
         }
+        EventStopCv(2, 0, 0);
 
         /* Add results from this window to our final results vector. */
         finalResults.emplace_back(arm::app::kws::KwsResult(
