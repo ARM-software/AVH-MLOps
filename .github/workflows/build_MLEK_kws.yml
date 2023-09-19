@@ -1,7 +1,7 @@
 # This YAML file is used to build and run an ML project on Arm Virtual Hardware FVP
 # It contains a job that runs tests on a Ubuntu machine using a custom Docker image
 
-name: ML Project TFLite microspeech - Build and Run on Arm Virtual Hardware FVP
+name: ML Project MLEK Keyword Spotting - Build and Run on Arm Virtual Hardware FVP
 
 on:
   # Trigger the workflow when a workflow run is completed
