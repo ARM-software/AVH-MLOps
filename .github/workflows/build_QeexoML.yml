@@ -1,7 +1,7 @@
 # This YAML file is used to build and run an ML project on Arm Virtual Hardware FVP
 # It contains a job that runs tests on a Ubuntu machine using a custom Docker image
 
-name: ML Project - Build and Run on Arm Virtual Hardware FVP
+name: ML Project TFLite microspeech - Build and Run on Arm Virtual Hardware FVP
 
 on:
   # Trigger the workflow when a workflow run is completed
@@ -40,17 +40,13 @@ jobs:
              wget -P /home/arm_mlops_docker https://github.com/ARM-software/CMSIS-DFP/releases/download/dev%2Fv1.0.0-dev12/ARM.CMSIS_DFP.1.0.0-dev12+g285da21.pack -nv
              su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add ARM.CMSIS_DFP.1.0.0-dev12+g285da21.pack --agree-embedded-license"
 
-      - name: Build Model for Cortex-M55 with AC6 (size)
-        # Build the ML model for Cortex-M55 using AC6 toolchain and size optimization
+      - name: Build Model for Cortex-M7 with AC6 (size)
+        # Build the ML model for Cortex-M7 using AC6 toolchain and size optimization
         run: |
-             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/MLOps.csolution.yml --packs --context ML_Model.size+CM55 --toolchain AC6"
+             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/QeexoAutoML/MLOps.csolution.yml --packs --context ML_Model.size+CM7 --toolchain AC6"
 
-      - name: Build Test Project for Cortex-M55 with AC6 (size)
-        # Build the test project for Cortex-M55 using AC6 toolchain and size optimization
-        run: |
-             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/MLOps.csolution.yml --packs --context ML_Test.size+CM55 --toolchain AC6"
 
-      - name: Execute Test Project on Cortex-M55 Arm Virtual Hardware FVP
+      - name: Execute Test Project on Cortex-M7 Arm Virtual Hardware FVP
         # Execute the test project on Cortex-M55 Arm Virtual Hardware FVP
         run: |
              su - arm_mlops_docker -c "LD_LIBRARY_PATH=/home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/ /home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/VHT_Corstone_SSE-300_Ethos-U55 -f /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/Target/CM55_Ethos/fvp_config.txt /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/out/ML_Test/CM55/size/ML_Test.axf --simlimit 12"
