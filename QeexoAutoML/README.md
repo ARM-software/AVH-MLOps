@@ -41,8 +41,6 @@ Base Directory: `QeexoAutoML`
 | AC6           |
 | GCC (default) |
 
->Currently only AC6 is supported!
-
 ## Build
 
 Build command syntax:
