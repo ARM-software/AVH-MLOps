@@ -7,11 +7,16 @@ solution:
     - pack: ARM::CMSIS_DFP
 
   misc:
-    - C-CPP:
-        - -fshort-enums
-    - Library:
+    # - C-CPP:
+    #     - -fshort-enums
+    - for-compiler: GCC
+      C-CPP:
+        - -ffunction-sections
+        - -fdata-sections
+      Library:
         - -lm
-      for-compiler: GCC
+      Link:
+        - -Wl,--gc-sections
 
   target-types:
     # - type: CM0

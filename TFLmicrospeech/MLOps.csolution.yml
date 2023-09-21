@@ -2,6 +2,13 @@ solution:
   created-for: cmsis-toobox@2.0.0
 
   cdefault:
+  misc:
+    - for-compiler: GCC
+      C-CPP:
+        - -ffunction-sections
+        - -fdata-sections
+      Link:
+        - -Wl,--gc-sections
 
   packs:
     - pack: ARM::CMSIS_DFP
