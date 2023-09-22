@@ -14,8 +14,8 @@ ADD avh-fvp_install.sh /avh-fvp_install.sh
 RUN chmod +x /avh-fvp_install.sh && /avh-fvp_install.sh
 ADD armllvm_install.sh /armllvm_install.sh
 RUN chmod +x /armllvm_install.sh && /armllvm_install.sh
-ADD armgcc_install.sh /armgcc_install.sh
-RUN chmod +x /armgcc_install.sh && /armgcc_install.sh
+#ADD armgcc_install.sh /armgcc_install.sh
+#RUN chmod +x /armgcc_install.sh && /armgcc_install.sh
 ADD cmsistoolbox_install.sh /cmsistoolbox_install.sh
 RUN chmod +x /cmsistoolbox_install.sh && /cmsistoolbox_install.sh
 
