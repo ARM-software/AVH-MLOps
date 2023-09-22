@@ -1,4 +1,4 @@
-wget https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-aarch64-arm-none-eabi.tar.xz -nv
-tar xJf arm-gnu-toolchain-12.3.rel1-aarch64-arm-none-eabi.tar.xz -C $HOME
-echo 'export PATH="$PATH:$HOME/arm-gnu-toolchain-12.3.rel1-aarch64-arm-none-eabi/bin"' >> ~/.bashrc
-source ~/.bashrc
+wget https://artifacts.keil.arm.com/arm-none-eabi-gcc/12.3.1/arm-gnu-toolchain-x86_64-arm-none-eabi.tar.bz2 -nv
+tar xJf arm-gnu-toolchain-x86_64-arm-none-eabi.tar.bz2 -C /home/arm_mlops_docker
+echo 'export PATH="$PATH:/home/arm_mlops_docker/arm-gnu-toolchain-x86_64-arm-none-eabi/bin"' >> /home/arm_mlops_docker/.bashrc
+chown -R arm_mlops_docker /home/arm_mlops_docker/arm-gnu-toolchain-x86_64-arm-none-eabi
