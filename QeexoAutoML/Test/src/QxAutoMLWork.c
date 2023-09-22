@@ -36,6 +36,8 @@
 extern void NativeInitSensor(void);
 extern void NativeOSDelay(int msec);
 extern int  NativeOSGetTick(void);
+extern void NativeMeasureStart(void);
+extern void NativeMeasureStop(void);
 
 static void QxFillDataFrame()
 {
@@ -102,7 +104,9 @@ int QxAutoMLWork()
     time_sum += 10;
     if (time_sum >= PRED_CLASSIFICATION_INTERVAL_IN_MSECS) { 
         /* Call classify periodically each pred_interval */
+        NativeMeasureStart();
         result = QxClassify();
+        NativeMeasureStop();
         time_sum = 0; 
     }
 

@@ -1,4 +1,5 @@
 #include "cmsis_os2.h"
+#include "EventRecorder.h"
 
 /* Native Functions */
 
@@ -14,4 +15,12 @@ int NativeOSGetTick(void) {
   tick = osKernelGetTickCount();
 
   return (int)tick;
+}
+
+void NativeMeasureStart(void) {
+  EventStartCv(1, 0, 0);
+}
+
+void NativeMeasureStop(void) {
+  EventStopCv(1, 0, 0);
 }
