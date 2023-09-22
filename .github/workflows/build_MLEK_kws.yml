@@ -53,5 +53,5 @@ jobs:
 
       - name: Get timings from Event Recorder Log
         run: |
-             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild/eventlist -s /__w/AVH-MLOps/AVH-MLOps/EventRecorder.log"
+             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/eventlist -s ./EventRecorder.log"
              
