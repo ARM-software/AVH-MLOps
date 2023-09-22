@@ -40,13 +40,11 @@ jobs:
              su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add https://github.com/ARM-software/CMSIS-DFP/releases/download/dev%2Fv1.0.0-dev12/ARM.CMSIS_DFP.1.0.0-dev12+g285da21.pack --agree-embedded-license"
 
       - name: Build Model for Cortex-M7 with AC6 (size)
-        # Build the ML model for Cortex-M7 using AC6 toolchain and size optimization
         run: |
              su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/QeexoAutoML/MLOps.csolution.yml --packs --context +CM7 --toolchain AC6"
 
 
       - name: Execute Test Project on Cortex-M7 Arm Virtual Hardware FVP
-        # Execute the test project on Cortex-M55 Arm Virtual Hardware FVP
         run: |
              chmod +x /home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/VHT_MPS2_Cortex-M7
              su - arm_mlops_docker -c "LD_LIBRARY_PATH=/home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/ /home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/VHT_MPS2_Cortex-M7 -f /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/Target/CM7/fvp_config.txt /__w/AVH-MLOps/AVH-MLOps/QeexoAutoML/out/ML_Test/CM7/size/ML_Test.axf --simlimit 12"
