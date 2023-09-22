@@ -42,7 +42,7 @@ jobs:
 
       - name: Build Model and Test for Cortex-M4 with AC6 (size)
         run: |
-             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/mlek-kws/MLOps.csolution.yml --packs --context ML_Model.size+CM4 --toolchain AC6"
+             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/mlek-kws/MLOps.csolution.yml --packs --context +CM4 --toolchain AC6"
 
       - name: Execute Test Project on Cortex-M4 Arm Virtual Hardware FVP
         run: |
