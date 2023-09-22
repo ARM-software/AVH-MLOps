@@ -51,7 +51,7 @@ Examples:
 
 - Build Test for Cortex-M7 with AC6 (size)
   ```sh
-  cbuild MLOps.csolution.yml --context ML_Test.size+CM7 --toolchain AC6
+  cbuild MLOps.csolution.yml --context .size+CM7 --toolchain AC6
   ```
 - Build Test for Cortex-M7 with AC6 (size, size, speed)
   ```sh

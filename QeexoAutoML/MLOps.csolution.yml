@@ -7,8 +7,8 @@ solution:
     - pack: ARM::CMSIS_DFP
 
   misc:
-    # - C-CPP:
-    #     - -fshort-enums
+    - C-CPP:
+        - -fshort-enums
     - for-compiler: GCC
       C-CPP:
         - -ffunction-sections
