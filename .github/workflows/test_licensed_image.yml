@@ -31,6 +31,10 @@ jobs:
         # Test if the cbuild command is working in the Docker container
         run: su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild --version"
 
-      - name: Run test command in Docker container
+      - name: Run test command in Docker container for armclang and license
         # Test if the armclang command is working in the Docker container
-        run: su -l arm_mlops_docker -c"/home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armclang --version"
+        run: su -l arm_mlops_docker -c "/home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armclang --version"
+
+      - name: Run test command in Docker container for arm-llvm
+        # Test if the arm-llvm command is working in the Docker container
+        run: su -l arm_mlops_docker -c "/home/arm_mlops_docker/LLVMEmbeddedToolchainForArm-16.0.0-Linux-x86_64/bin/clang --target=armv7m-none-eabi --version"
