@@ -6,7 +6,7 @@ This repository contains:
 - Setup of a Docker container with foundation tools for MLOps systems.
 - GitHub Actions that demonstrate typical MLOps workflows such as:
   - Create a library with a trained ML model with different compilers and for different target processors
-  - Measured performance (inference time) of an ML model using Arm Virtual Hardware (AVH) FVP Models.
+  - Measure performance (inference time) of an ML model using Arm Virtual Hardware (AVH) FVP Models.
  
 Refer to the [**ML Developers Guide for Cortex-M Processors and Ethos-U NPU**](https://developer.arm.com/documentation/109267/latest/) for more information.
 

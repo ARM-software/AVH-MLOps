@@ -44,6 +44,7 @@ Base Directory: `AVH-MLOps-main`
 | toolchain     |
 |:--------------|
 | AC6           |
+| CLANG         |
 | GCC (default) |
 
 ## Build
