@@ -1,0 +1,9 @@
+project:
+
+  groups:
+    - group: Source files
+      files:
+        - file: ./main.c
+
+  layers:
+    - layer: $Target-Layer$
