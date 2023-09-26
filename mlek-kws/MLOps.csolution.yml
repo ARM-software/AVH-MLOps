@@ -9,6 +9,12 @@ solution:
         - -fdata-sections
       Link:
         - -Wl,--gc-sections
+    - for-compiler: CLANG
+      C-CPP:
+        - -ffunction-sections
+        - -fdata-sections
+      Link:
+        - -Wl,--gc-sections
 
   packs:
     - pack: ARM::CMSIS_DFP

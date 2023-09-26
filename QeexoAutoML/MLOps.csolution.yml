@@ -17,6 +17,12 @@ solution:
         - -lm
       Link:
         - -Wl,--gc-sections
+    - for-compiler: CLANG
+      C-CPP:
+        - -ffunction-sections
+        - -fdata-sections
+      Link:
+        - -Wl,--gc-sections
 
   target-types:
     # - type: CM0
