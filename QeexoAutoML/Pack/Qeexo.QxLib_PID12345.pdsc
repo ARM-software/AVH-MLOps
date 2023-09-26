@@ -9,7 +9,8 @@
   <softwareComponents>
     <softwareComponent name="Qeexo Library">
       <files>
-        <file name="libQxClassifyEngine.a" />
+        <file name="Lib/libQxClassifyEngine.a" />
+        <include name="Include/QxAutoMLUser.h" />
       </files>
       <dependencies>
         <dependency  />
