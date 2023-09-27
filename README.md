@@ -32,7 +32,7 @@ URL / Tool     | Description
 [artifacts.keil.arm.com/cmsis-toolbox/](https://artifacts.keil.arm.com/cmsis-toolbox/)  | [CLI Build System for CMSIS-Pack based projects](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/README.md#cmsis-toolbox)
 [artifacts.keil.arm.com/arm-compiler/](https://artifacts.keil.arm.com/arm-compiler/)      | [Arm Compiler for Embedded](https://developer.arm.com/Tools%20and%20Software/Arm%20Compiler%20for%20Embedded) (commercial)
 [artifacts.keil.arm.com/arm-none-eabi-gcc/](https://artifacts.keil.arm.com/arm-none-eabi-gcc/) | [Arm GNU Toolchain](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain) (community supported); not recommended for Cortex-M with Helium
-[artifacts.keil.arm.com/arm-compiler/arm-llvm/](https://artifacts.keil.arm.com/arm-compiler/arm-none-eabi-gcc/) | [Arm LLVM Embedded Toolchain](https://learn.arm.com/install-guides/llvm-embedded/) (community supported)
+[https://github.com/ARM-software/LLVM-embedded-toolchain-for-Arm/](https://github.com/ARM-software/LLVM-embedded-toolchain-for-Arm/releases/latest/) | [Arm LLVM Embedded Toolchain](https://learn.arm.com/install-guides/llvm-embedded/) (community supported)
 
 ## Github Action workflow templates
 
