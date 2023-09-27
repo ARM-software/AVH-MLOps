@@ -17,7 +17,7 @@ solution:
         - -Wl,--gc-sections
 
   packs:
-    - pack: ARM::CMSIS_DFP
+    - pack: ARM::CMSIS_DFP@>=1.0.0-dev0
       not-for-context:
         - +CM55_Ethos
         - +CM85_Ethos

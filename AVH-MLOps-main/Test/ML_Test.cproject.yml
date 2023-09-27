@@ -1,5 +1,8 @@
 project:
 
+  components:
+    - component: ARM::CMSIS:CORE
+
   groups:
     - group: Source files
       files:

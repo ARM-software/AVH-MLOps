@@ -3,13 +3,10 @@ project:
   debug: on
 
   packs:
-    - pack: ARM::CMSIS
-      # path: ../
-    - pack: ARM::CMSIS_DFP
-      # path: ../
+    - pack: ARM::CMSIS@>=6.0.0-dev0
     - pack: ARM::CMSIS-View@1.0.0
-    - pack: ARM::CMSIS-DSP
-    - pack: ARM::CMSIS-RTX
+    - pack: ARM::CMSIS-DSP@1.15.0
+    - pack: ARM::CMSIS-RTX@>=1.0.0-dev0
 
   add-path:
     - ../Include
@@ -17,6 +14,7 @@ project:
 
   components:
     - component: Device:OS Tick
+    - component: ARM::CMSIS:CORE
     - component: ARM::CMSIS:DSP&Source
       not-for-context:
         - +CM55

@@ -3,7 +3,8 @@ project:
   debug: on
 
   packs:
-    - pack: ARM::CMSIS-DSP@1.14.4
+    - pack: ARM::CMSIS@>=6.0.0-dev0
+    - pack: ARM::CMSIS-DSP@1.15.0
     - pack: ARM::CMSIS-View@1.0.0
     - pack: ARM::ml-embedded-eval-kit-uc-api@22.8.0-Beta
     - pack: tensorflow::flatbuffers@1.22.8
@@ -18,6 +19,7 @@ project:
     - TF_LITE_STATIC_MEMORY: 1
 
   components:
+    - component: ARM::CMSIS:CORE
     - component: ARM::CMSIS:DSP&Source
     - component: CMSIS-View:Event Recorder&Semihosting
     - component: tensorflow::Data Exchange:Serialization:flatbuffers

@@ -3,7 +3,6 @@ layer:
   description: Cortex-M0 target components and files
 
   components:
-    - component: ARM::CMSIS:CORE
     - component: Device:Startup&C Startup
 
   linker:

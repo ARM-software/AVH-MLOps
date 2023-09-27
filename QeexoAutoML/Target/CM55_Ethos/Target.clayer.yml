@@ -3,7 +3,6 @@ layer:
   description: Cortex-M55 with Ethos-U target components and files
 
   components:
-    - component: ARM::CMSIS:CORE
     - component: Device:Startup&C Startup
 
   linker:
