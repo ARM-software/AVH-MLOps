@@ -39,18 +39,15 @@ jobs:
              su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add https://github.com/ARM-software/CMSIS_6/releases/download/dev%2Fv6.0.0-dev35/ARM.CMSIS.6.0.0-dev35+geb1d42a.pack --agree-embedded-license"
              su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add https://github.com/ARM-software/CMSIS-DFP/releases/download/dev%2Fv1.0.0-dev12/ARM.CMSIS_DFP.1.0.0-dev12+g285da21.pack --agree-embedded-license"
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-
       - name: Build custom Qeexo project CMSIS pack
         run: |
             export PATH=/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/:$PATH
             pip3 install requests pyyml semantic_version
-            cd /__w/AVH-MLOps/AVH-MLOps/QeexoAutoML/Pack && python3 gen_pack.py --path QxLib_PID12345 --version 1.00 --candidate_rev=1000
+            cd /__w/AVH-MLOps/AVH-MLOps/QeexoAutoML/Pack && python3 gen_pack.py --path QxLib_PID12345 --version 1.00 --candidate_rev=run${{ github.GITHUB_RUN_ID}}
 
       - name: Install custom Qeexo project CMSIS pack
         run: |
-            su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add /__w/AVH-MLOps/AVH-MLOps/QeexoAutoML/Pack/QxLib_PID12345/build/Qeexo.QxLib_PID12345.1.0.0-1000.pack --agree-embedded-license"
+            su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add /__w/AVH-MLOps/AVH-MLOps/QeexoAutoML/Pack/QxLib_PID12345/build/Qeexo.QxLib_PID12345.1.0.0-run${{ github.GITHUB_RUN_ID}}.pack --agree-embedded-license"
 
 
       - name: Build Test Project for Cortex-M7 with AC6 (size)
