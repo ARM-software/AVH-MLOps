@@ -15,7 +15,7 @@
       <description>AutoML Library Project ID 12345</description>
       <files>
         <file category="library" name="Lib/libQxClassifyEngine.a"/>
-        <file category="include" name="Lib/QxAutoMLUser.h" />
+        <file category="header" name="Lib/QxAutoMLUser.h" />
       </files>
     </component>
   </components>
