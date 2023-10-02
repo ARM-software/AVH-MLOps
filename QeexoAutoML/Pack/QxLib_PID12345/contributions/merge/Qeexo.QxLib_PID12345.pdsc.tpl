@@ -8,17 +8,15 @@
       Qeexo AutoML project ID 12345 %{RELEASE_VERSION}%
     </release>
   </releases>
+  <url>http://www.qeexo.com/</url>
   <description>Qeexo Library Pack Project ID 12345</description>
-  <condition id="CM4_CM7">
-    <description>Cortex-M4 based device</description>
-    <accept  Dcore="Cortex-M4"/>
-    <accept  Dcore="Cortex-M7"/>
-  </condition>
-   <component Cclass="Machine Learning" Cgroup="Qeexo AutoML" Csub="Qeexo Custom Library PID12345">
+  <components>
+   <component Cclass="Machine Learning" Cgroup="Qeexo AutoML" Csub="Qeexo Custom Library PID12345" Cversion="1.0.0" >
       <description>AutoML Library Project ID 12345</description>
       <files>
-        <file name="Lib/libQxClassifyEngine.a"/>
-        <include name="Include/QxAutoMLUser.h" />
+        <file category="library" name="Lib/libQxClassifyEngine.a"/>
+        <file category="include" name="Lib/QxAutoMLUser.h" />
       </files>
     </component>
+  </components>
 </package>
