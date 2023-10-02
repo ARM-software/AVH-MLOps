@@ -10,6 +10,7 @@ project:
     - pack: ARM::CMSIS-View@1.0.0
     - pack: ARM::CMSIS-DSP
     - pack: ARM::CMSIS-RTX
+    - pack: Qeexo::QxLib_PID12345@1.0.0-run6378971477
 
   add-path:
     - ../Include
