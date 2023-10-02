@@ -14,14 +14,11 @@
     <accept  Dcore="Cortex-M4"/>
     <accept  Dcore="Cortex-M7"/>
   </condition>
-  <softwareComponents>
-    <softwareComponent name="Qeexo Library">
+   <component Cclass="Machine Learning" Cgroup="Qeexo AutoML" Csub="Qeexo Custom Library PID12345">
+      <description>AutoML Library Project ID 12345</description>
       <files>
         <file name="Lib/libQxClassifyEngine.a"/>
         <include name="Include/QxAutoMLUser.h" />
       </files>
-      <dependencies>
-      </dependencies>
-    </softwareComponent>
-  </softwareComponents>
+    </component>
 </package>
