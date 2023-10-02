@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package schemaVersion="1.2" xmlns="http://www.arm.com/CMSIS-Pack"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.arm.com/CMSIS-Pack http://www.arm.com/CMSIS-Pack/CMSIS-Pack.xsd">
+
+<package schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.7/schema/PACK.xsd">
   <vendor>Qeexo</vendor>
   <name>QxLib_PID12345</name>
   <releases>
