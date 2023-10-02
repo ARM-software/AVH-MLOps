@@ -34,7 +34,7 @@ project:
         - ARM_MATH_AUTOVECTORIZE
     - component: ARM::CMSIS:RTOS2:Keil RTX5&Source
     - component: CMSIS-View:Event Recorder&Semihosting
-    - component: Machine Learning:Qeexo AutoML:Qeexo Custom Library PID12345
+    - component: Qeexo::Machine Learning:Qeexo AutoML:Qeexo Custom Library PID12345
 
   groups:
     - group: main
