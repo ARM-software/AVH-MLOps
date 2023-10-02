@@ -44,8 +44,9 @@ jobs:
 
       - name: Build custom Qeexo project CMSIS pack
         run: |
-            su -l arm_mlops_docker -c "export PATH=/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/:$PATH"
-            su -l arm_mlops_docker -c "cd /__w/AVH-MLOps/AVH-MLOps/QeexoAutoML/Pack && python3 gen_pack.py --path QxLib_PID12345 --version 1.00 --candidate_rev=1000"
+            export PATH=/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/:$PATH
+            pip3 install requests pyyml semantic_version
+            cd /__w/AVH-MLOps/AVH-MLOps/QeexoAutoML/Pack && python3 gen_pack.py --path QxLib_PID12345 --version 1.00 --candidate_rev=1000
 
       - name: Install custom Qeexo project CMSIS pack
         run: |
