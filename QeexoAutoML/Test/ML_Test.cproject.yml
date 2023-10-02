@@ -13,7 +13,6 @@ project:
     - pack: Qeexo::QxLib_PID12345
 
   add-path:
-    - ../Include
     - ./sensor_data
 
   components:
