@@ -1,0 +1,15 @@
+name: QxLib_PID12345
+vendor: Qeexo
+version: "0.0"
+
+pdsc: ./contributions/merge/Qeexo.QxLib_PID12345.pdsc
+add:  ./contributions/add
+build: build
+out: ./
+
+remote_source: #https://github.com/google/flatbuffers/archive/master.zip
+local_source: ../Lib/
+src_dest: ./Lib/
+
+
+

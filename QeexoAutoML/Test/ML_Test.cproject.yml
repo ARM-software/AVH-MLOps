@@ -5,11 +5,13 @@ project:
   packs:
     - pack: ARM::CMSIS@>=6.0.0-dev0
     - pack: ARM::CMSIS-View@1.0.0
+
     - pack: ARM::CMSIS-DSP@1.15.0
     - pack: ARM::CMSIS-RTX@>=1.0.0-dev0
+    - pack: Qeexo::QxLib_PID12345
+
 
   add-path:
-    - ../Include
     - ./sensor_data
 
   components:
@@ -31,6 +33,7 @@ project:
         - ARM_MATH_AUTOVECTORIZE
     - component: ARM::CMSIS:RTOS2:Keil RTX5&Source
     - component: CMSIS-View:Event Recorder&Semihosting
+    - component: Qeexo::Machine Learning:Qeexo AutoML:Qeexo Custom Library PID12345
 
   groups:
     - group: main
@@ -44,7 +47,6 @@ project:
     - group: QeexoAutoML
       files:
         - file: ./src/QxAutoMLWork.c
-        - file: ../Lib/libQxClassifyEngine.a
 
   layers:
     - layer: $Target-Layer$
