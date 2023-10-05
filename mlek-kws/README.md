@@ -22,6 +22,7 @@ Base Directory: `mlek-kws`
 | CM4         | Cortex-M4                 | VHT_MPS2_Cortex-M4             |
 | CM4_FP      | Cortex-M4_FP              | VHT_MPS2_Cortex-M4             |
 | CM7         | Cortex-M7                 | VHT_MPS2_Cortex-M7             |
+| CM33        | Cortex-M33                | VHT_MPS2_Cortex-M33            |
 | CM55        | Cortex-M55                | VHT_MPS3_Corstone_SSE-300      |
 | CM85        | Cortex-M85                | VHT_Corstone_SSE-310           |
 | CM55_Ethos  | Cortex-M55 with Ethos-U55 | VHT_Corstone_SSE-300_Ethos-U55 |

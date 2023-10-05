@@ -9,9 +9,15 @@ solution:
         - -fdata-sections
       Link:
         - -Wl,--gc-sections
+    - for-compiler: CLANG
+      C-CPP:
+        - -ffunction-sections
+        - -fdata-sections
+      Link:
+        - -Wl,--gc-sections
 
   packs:
-    - pack: ARM::CMSIS_DFP
+    - pack: ARM::CMSIS_DFP@>=1.0.0-dev0
 
   target-types:
     - type: CM0

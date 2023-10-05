@@ -2,12 +2,7 @@ layer:
   type: Target
   description: Cortex-M23 target components and files
 
-  packs:
-    - pack: ARM::CMSIS
-    - pack: ARM::CMSIS_DFP
-
   components:
-    - component: ARM::CMSIS:CORE
     - component: Device:Startup&C Startup
 
   linker:

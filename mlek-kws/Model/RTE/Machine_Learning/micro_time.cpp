@@ -61,7 +61,7 @@ uint32_t GetCurrentTimeTicks() {
 
   if (!is_initialized) {
 #if (!defined(TF_LITE_STRIP_ERROR_STRINGS) && !defined(ARMCM0) && \
-     !defined(ARMCM0plus))
+     !defined(ARMCM0P) && !defined(ARMCM23))
 #ifdef ARM_MODEL_USE_PMU_COUNTERS
     ARM_PMU_Enable();
     DCB->DEMCR |= DCB_DEMCR_TRCENA_Msk;
@@ -86,7 +86,7 @@ uint32_t GetCurrentTimeTicks() {
   }
 
 #if (!defined(TF_LITE_STRIP_ERROR_STRINGS) && !defined(ARMCM0) && \
-     !defined(ARMCM0plus))
+     !defined(ARMCM0P) && !defined(ARMCM23))
 #ifdef ARM_MODEL_USE_PMU_COUNTERS
   return ARM_PMU_Get_CCNTR();
 #else

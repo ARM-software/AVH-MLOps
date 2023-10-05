@@ -3,8 +3,8 @@ project:
   debug: off
 
   packs:
-    - pack: ARM::CMSIS@5.9.0
-    - pack: ARM::CMSIS-DSP@1.14.4
+    - pack: ARM::CMSIS@>=6.0.0-dev0
+    - pack: ARM::CMSIS-DSP@1.15.0
     - pack: ARM::CMSIS-NN@4.0.0
     - pack: Arm::ethos-u-core-driver@1.22.8
     - pack: ARM::ml-embedded-eval-kit-uc-api@22.8.0-Beta

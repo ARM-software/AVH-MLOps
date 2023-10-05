@@ -9,9 +9,15 @@ solution:
         - -fdata-sections
       Link:
         - -Wl,--gc-sections
+    - for-compiler: CLANG
+      C-CPP:
+        - -ffunction-sections
+        - -fdata-sections
+      Link:
+        - -Wl,--gc-sections
 
   packs:
-    - pack: ARM::CMSIS_DFP
+    - pack: ARM::CMSIS_DFP@>=1.0.0-dev0
       not-for-context:
         - +CM55_Ethos
         - +CM85_Ethos
@@ -55,12 +61,12 @@ solution:
     #     trustzone: off
     #   variables:
     #     - Target-Layer: ../Target/CM23/Target.clayer.yml
-    # - type: CM33
-    #   device: ARMCM33
-    #   processor:
-    #     trustzone: off
-    #   variables:
-    #     - Target-Layer: ../Target/CM33/Target.clayer.yml
+    - type: CM33
+      device: ARMCM33
+      processor:
+        trustzone: off
+      variables:
+        - Target-Layer: ../Target/CM33/Target.clayer.yml
     - type: CM55
       device: ARMCM55
       processor:

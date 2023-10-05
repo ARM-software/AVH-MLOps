@@ -4,8 +4,8 @@ solution:
   cdefault:
 
   packs:
-    - pack: ARM::CMSIS
-    - pack: ARM::CMSIS_DFP
+    - pack: ARM::CMSIS_DFP@>=1.0.0-dev0
+    - pack: ARM::CMSIS@>=6.0.0-dev0
 
   target-types:
     - type: CM0
