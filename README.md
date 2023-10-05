@@ -57,12 +57,6 @@ To set a secret called ARM_UBL_LICENSE_IDENTIFIER to a repository in Github, go 
 2. Customize Base Docker Image
 Additional installations for custom tools you can add those to docker_base/Dockerfile. If you are new to Docker find a good starting point in the [Docker manual](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
 
-3. Retarget Licensed Docker Image to your Base Image. 
-Open docker_licensed/Docker and edit the first line to match the repository your fork is located on.
-```
-FROM ghcr.io/***/***/arm-mlops-docker-base:latest as base
-```
-
 Check the Actions view to verify the execution of all 4 workflows.
 
 ## Known Issues
