@@ -55,4 +55,6 @@ jobs:
         with:
           context: ./docker_licensed
           push: true
+          build-args: |
+            BASE_IMAGE=ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest
           tags: ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest

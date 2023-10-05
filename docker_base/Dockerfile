@@ -1,4 +1,4 @@
-FROM ubuntu:latest as base
+FROM --platform=linux/amd64 ubuntu:latest as base
 
 RUN  apt-get update && apt-get install -y wget sudo software-properties-common && rm -rf /var/lib/apt/lists/*
 
