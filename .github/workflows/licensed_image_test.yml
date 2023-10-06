@@ -39,6 +39,6 @@ jobs:
         # Test if the clang command is working in the Docker container
         run: su -l arm_mlops_docker -c "/home/arm_mlops_docker/LLVMEmbeddedToolchainForArm-16.0.0-Linux-x86_64/bin/clang --target=armv7m-none-eabi --version"
 
-      #- name: Run test command in Docker container for GNU Compiler
+      - name: Run test command in Docker container for GNU Compiler
         # Test if the arm-none-eabi-gcc command is working in the Docker container
-        # run: su -l arm_mlops_docker -c "/home/arm_mlops_docker/arm-gnu-toolchain-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc --target=armv7m-none-eabi --version"
+        run: su -l arm_mlops_docker -c "/home/arm_mlops_docker/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc --version"
