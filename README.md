@@ -50,9 +50,9 @@ Four workflows examplify a typical MLOps cycle with the Arm provided Foundation 
 
 First create a fork into a user account or organization of your own (or commit to a new private repository). On your fork you need to make a couple of modifications:
 
-1. Add own License Code (Arm UBL license)
-The license code is passed to the docker build process in a Github Actions secret called ARM_UBL_LICENSE_IDENTIFIER.
-To set a secret called ARM_UBL_LICENSE_IDENTIFIER to a repository in Github, go to the repository's main page, click on "Settings", then "Secrets", and "New repository secret". Enter "ARM_UBL_LICENSE_IDENTIFIER" as the name and the license code for the Arm UBL license as the value. Click on "Add secret". 
+1. Add own Activation Code (Arm UBL license)
+The activation code is passed to the docker build process in a Github Actions secret called ARM_UBL_LICENSE_IDENTIFIER.
+To set a secret called ARM_UBL_LICENSE_IDENTIFIER to a repository in Github, go to the repository's main page, click on "Settings", then "Secrets", and "New repository secret". Enter "ARM_UBL_LICENSE_IDENTIFIER" as the name and the activation code for the Arm UBL license as the value. Click on "Add secret". 
 
 2. Customize Base Docker Image
 Additional installations for custom tools you can add those to docker_base/Dockerfile. If you are new to Docker find a good starting point in the [Docker manual](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
