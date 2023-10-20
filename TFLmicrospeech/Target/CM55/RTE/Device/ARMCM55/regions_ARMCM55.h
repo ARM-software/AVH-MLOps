@@ -4,7 +4,7 @@
 
 //-------- <<< Use Configuration Wizard in Context Menu >>> --------------------
 
-// <n>Device pack:   ARM.CMSIS_DFP.0.0.0
+// <n>Device pack:   ARM::Cortex_DFP@1.0.0
 // <i>Device pack used to generate this file
 
 // <h>ROM Configuration
