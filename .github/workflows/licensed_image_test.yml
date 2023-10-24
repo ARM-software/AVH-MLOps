@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       # Use the custom Docker image with the necessary tools and dependencies
-      image: ghcr.io/${{ github.repository_owner | lower }}/avh-mlops/arm-mlops-docker-licensed:latest
+      image: ghcr.io/arm-software/avh-mlops/arm-mlops-docker-licensed:latest
       credentials:
         # Set the Docker image credentials using the actor and a GitHub token
         username: ${{ github.actor }}
