@@ -16,7 +16,7 @@ Directory           | Description
 :-------------------|:------------------------------
 [.github/workflows](./.github/workflows)           | GitHub Action workflow definitions.
 [AVH-MLOps-main](./AVH-MLOps-main)                 | Simple "Hello World" test project with vcpkg installation for desktop usage.
-[mlek-kws](./mlek-kws)                             | MLEK Keyword Spotting (KWS) example with ML library generation and test execution. This project runs on all relevant Cortex-M and Ethos-U targets and can be compiled using different toolchains.
+[mlek-kws](./mlek-kws)                             | MLEK Keyword Spotting (KWS) example with generation of a ML Model library and execution on AVH. This project runs on all relevant Cortex-M and Ethos-U targets and can be compiled using different toolchains.
 [QeexoAutoML](./QeexoAutoML)                       | Qeexo AutoML example with prebuilt ML library and test execution.
 [TFLmicrospeech](./TFLmicrospeech)                 | TensorFLow Lite Microspeech example with ML library generation and test execution. This project runs on all relevant Cortex-M and Ethos-U targets and can be compiled using different toolchains.
 [docker_base](./docker_base)                       | Docker base image with all tools (see Arm Tools Artifactory).
@@ -50,9 +50,9 @@ Four workflows examplify a typical MLOps cycle with the Arm provided Foundation 
 
 First create a fork into a user account or organization of your own (or commit to a new private repository). On your fork you need to make a couple of modifications:
 
-1. Add own License Code (Arm UBL license)
-The license code is passed to the docker build process in a Github Actions secret called ARM_UBL_LICENSE_IDENTIFIER.
-To set a secret called ARM_UBL_LICENSE_IDENTIFIER to a repository in Github, go to the repository's main page, click on "Settings", then "Secrets", and "New repository secret". Enter "ARM_UBL_LICENSE_IDENTIFIER" as the name and the license code for the Arm UBL license as the value. Click on "Add secret". 
+1. Add own Activation Code (Arm UBL license)
+The activation code is passed to the docker build process in a Github Actions secret called ARM_UBL_LICENSE_IDENTIFIER.
+To set a secret called ARM_UBL_LICENSE_IDENTIFIER to a repository in Github, go to the repository's main page, click on "Settings", then "Secrets", and "New repository secret". Enter "ARM_UBL_LICENSE_IDENTIFIER" as the name and the activation code for the Arm UBL license as the value. Click on "Add secret". 
 
 2. Customize Base Docker Image
 Additional installations for custom tools you can add those to docker_base/Dockerfile. If you are new to Docker find a good starting point in the [Docker manual](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
