@@ -5,4 +5,4 @@ docker exec local_arm_mlops_container wget -P /home/arm_mlops_docker https://git
 docker exec local_arm_mlops_container su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add ARM.Cortex_DFP.1.0.0-dev15+gf6802e4.pack --agree-embedded-license"
 
 docker exec local_arm_mlops_container su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /workspace/mlek-kws/MLOps.csolution.yml --packs --context +CM4 --toolchain AC6"
-docker exec local_arm_mlops_container su - arm_mlops_docker -c "LD_LIBRARY_PATH=/home/arm_mlops_docker/avh-fvp-11.21.15/avh-fvp-cortex-m-linux-amd64/bin/ /home/arm_mlops_docker/avh-fvp-11.22.39/avh-linux-x86/bin/FVP_MPS2_Cortex-M4 -f /workspace/TFLmicrospeech/Target/CM4/fvp_config.txt /workspace/mlek-kws/out/ML_Test/CM4/size/ML_Test.axf --simlimit 12"
+docker exec local_arm_mlops_container su - arm_mlops_docker -c "/home/arm_mlops_docker/avh-fvp-11.22.39/avh-linux-x86/bin/FVP_MPS2_Cortex-M4 -f /workspace/TFLmicrospeech/Target/CM4/fvp_config.txt /workspace/mlek-kws/out/ML_Test/CM4/size/ML_Test.axf --simlimit 12"
