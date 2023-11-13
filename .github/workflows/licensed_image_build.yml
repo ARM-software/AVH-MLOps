@@ -51,7 +51,6 @@ jobs:
             echo "Secret is set. Building with license code supplied."
             docker exec build_container /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm activate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker --to-file /workspace/arm_mlops_docker_license
             cp ./arm_mlops_docker_license ./docker_licensed/arm_mlops_docker_license
-            cat ./docker_licensed/arm_mlops_docker_license
           fi
 
       - name: Build and push Docker image
