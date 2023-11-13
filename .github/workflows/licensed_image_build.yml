@@ -45,9 +45,14 @@ jobs:
         # Create a license file for the Docker image using the ARM UBL license identifier
         run: |
           docker run -d --name build_container -u root -v ${{ github.workspace }}:/workspace ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest sleep infinity
-          docker exec build_container /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm activate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker --to-file /workspace/arm_mlops_docker_license
-          cp ./arm_mlops_docker_license ./docker_licensed/arm_mlops_docker_license
-          cat ./docker_licensed/arm_mlops_docker_license
+          if [ -z "${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }}" ]; then
+            echo "Secret is not set. Building with Community Edition license. Non commercial use only."
+          else
+            echo "Secret is set. Building with license code supplied."
+            docker exec build_container /home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armlm activate --code ${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }} --as-user arm_mlops_docker --to-file /workspace/arm_mlops_docker_license
+            cp ./arm_mlops_docker_license ./docker_licensed/arm_mlops_docker_license
+            cat ./docker_licensed/arm_mlops_docker_license
+          fi
 
       - name: Build and push Docker image
         # Build the Docker image using the Dockerfile in the `docker_licensed` directory and push it to GitHub Container Registry
