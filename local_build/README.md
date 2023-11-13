@@ -19,6 +19,6 @@ To locally build the container onto a desktop machine:
 - Build an image based on the base image, adding the license. This needs to be rebuild whenever the license expires: \
  ``` docker build -t arm-mlops-docker-licensed:latest -f ./docker_licensed/Dockerfile ./docker_licensed --build-arg BASE_IMAGE=arm-mlops-docker-base  --platform=linux/amd64 ```
 - Run an instance of the image: \
-``` docker run -d --name local_arm_mlops_container -u root -v .:/workspace --platform=linux/amd64 arm-mlops-docker-licensed:latest ```
+``` docker run -d --name local_arm_mlops_container -u root -v .:/workspace --platform=linux/amd64 arm-mlops-docker-licensed:latest sleep infinity ```
 - Test if the Arm Compiler can be executed and displays your license: \
 ```docker exec local_arm_mlops_container su -l arm_mlops_docker -c "/home/arm_mlops_docker/ArmCompilerforEmbedded6.20/bin/armclang --version"```
