@@ -70,10 +70,7 @@ uint32_t GetCurrentTimeTicks() {
     ARM_PMU_CNTR_Enable(PMU_CNTENSET_CCNTR_ENABLE_Msk);
 
 #else
-#ifdef ARMCM7
-    DWT->LAR = 0xC5ACCE55;
-#endif
-    CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+    DCB->DEMCR |= DCB_DEMCR_TRCENA_Msk;
 
     // Reset and DWT cycle counter.
     DWT->CYCCNT = 0;
