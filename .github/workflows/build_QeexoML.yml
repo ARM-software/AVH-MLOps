@@ -36,7 +36,7 @@ jobs:
         # Install custom CMSIS packs required for the ML project
         run: | 
              su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add https://github.com/ARM-software/CMSIS-RTX/releases/download/dev%2Fv1.0.0-dev7/ARM.CMSIS-RTX.1.0.0-dev7+g11d1f10.pack --agree-embedded-license"
-             su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add https://github.com/ARM-software/CMSIS_6/releases/download/dev%2Fv6.0.0-dev53/ARM.CMSIS.6.0.0-dev53+g825ef36.pack --agree-embedded-license"
+             su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add https://github.com/ARM-software/CMSIS_6/releases/download/dev%2Fv6.0.0-dev35/ARM.CMSIS.6.0.0-dev35+geb1d42a.pack --agree-embedded-license"
              su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add https://github.com/ARM-software/Cortex_DFP/releases/download/dev%2Fv1.0.0-dev15/ARM.Cortex_DFP.1.0.0-dev15+gf6802e4.pack --agree-embedded-license"
 
       - name: Build custom Qeexo project CMSIS pack

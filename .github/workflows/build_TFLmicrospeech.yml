@@ -35,8 +35,8 @@ jobs:
       - name: Install custom CMSIS packs
         # Install custom CMSIS packs required for the ML project
         run: | 
-             wget -P /home/arm_mlops_docker https://github.com/ARM-software/CMSIS_6/releases/download/dev%2Fv6.0.0-dev53/ARM.CMSIS.6.0.0-dev53+g825ef36.pack -nv
-             su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add ARM.CMSIS.6.0.0-dev53+g825ef36.pack --agree-embedded-license"
+             wget -P /home/arm_mlops_docker https://github.com/ARM-software/CMSIS_6/releases/download/dev%2Fv6.0.0-dev35/ARM.CMSIS.6.0.0-dev35+geb1d42a.pack -nv
+             su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add ARM.CMSIS.6.0.0-dev35+geb1d42a.pack --agree-embedded-license"
              wget -P /home/arm_mlops_docker https://github.com/ARM-software/Cortex_DFP/releases/download/dev%2Fv1.0.0-dev15/ARM.Cortex_DFP.1.0.0-dev15+gf6802e4.pack -nv
              su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add ARM.Cortex_DFP.1.0.0-dev15+gf6802e4.pack --agree-embedded-license"
 
