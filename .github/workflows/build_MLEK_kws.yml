@@ -40,13 +40,22 @@ jobs:
              wget -P /home/arm_mlops_docker https://github.com/ARM-software/Cortex_DFP/releases/download/dev%2Fv1.0.0-dev15/ARM.Cortex_DFP.1.0.0-dev15+gf6802e4.pack -nv
              su -l arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cpackget add ARM.Cortex_DFP.1.0.0-dev15+gf6802e4.pack --agree-embedded-license"
 
-      - name: Build Model and Test for Cortex-M4 with AC6 (size)
+      - name: Build Model and Test for Cortex-M4 with AC6 (size) / Corstone-300 for Community Edition
         run: |
-             su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/mlek-kws/MLOps.csolution.yml --packs --context +CM4 --toolchain AC6"
+             if [ -z "${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }}" ]; then
+                su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/mlek-kws/MLOps.csolution.yml --packs --context +CM55_Ethos --toolchain AC6"
+              else
+                su - arm_mlops_docker -c "/home/arm_mlops_docker/cmsis-toolbox-linux-amd64/bin/cbuild /__w/AVH-MLOps/AVH-MLOps/mlek-kws/MLOps.csolution.yml --packs --context +CM4 --toolchain AC6"
+              fi
 
-      - name: Execute Test Project on Cortex-M4 Arm Virtual Hardware FVP
+
+      - name: Execute Test Project on Arm Virtual Hardware FVP
         run: |
+            if [ -z "${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }}" ]; then
+             su - arm_mlops_docker -c "/home/arm_mlops_docker/avh-fvp-11.22.39/avh-linux-x86/bin/FVP_Corstone_SSE-300 -f /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/Target/CM55_Ethos/fvp_config.txt /__w/AVH-MLOps/AVH-MLOps/mlek-kws/out/ML_Test/CM55_Ethos/size/ML_Test.axf --simlimit 12"
+            else
              su - arm_mlops_docker -c "/home/arm_mlops_docker/avh-fvp-11.22.39/avh-linux-x86/bin/FVP_MPS2_Cortex-M4 -f /__w/AVH-MLOps/AVH-MLOps/TFLmicrospeech/Target/CM4/fvp_config.txt /__w/AVH-MLOps/AVH-MLOps/mlek-kws/out/ML_Test/CM4/size/ML_Test.axf --simlimit 12"
+            fi
 
       - name: Get timings from Event Recorder Log
         run: |
