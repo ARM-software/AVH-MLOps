@@ -59,11 +59,11 @@ Examples:
   ```sh
   cbuild MLOps.csolution.yml --context ML_Test.size+CM3 --update-rte --toolchain AC6
   ```
-- Build Test for Cortex-M3 with AC6 (size, size, speed)
+- Build Test for Cortex-M3 with AC6 (balanced, size, speed)
   ```sh
   cbuild MLOps.csolution.yml --context +CM3 --update-rte --toolchain AC6
   ```
-- Build Test for all cores with GCC (size, size, speed)
+- Build Test for all cores with GCC (balanced, size, speed)
   ```sh
   cbuild MLOps.csolution.yml --update-rte
   ```
