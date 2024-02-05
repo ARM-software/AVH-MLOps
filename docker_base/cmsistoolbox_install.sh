@@ -1,4 +1,4 @@
-wget https://artifacts.keil.arm.com/cmsis-toolbox/2.1.0/cmsis-toolbox-linux-amd64.tar.gz -nv
+wget https://artifacts.tools.arm.com/cmsis-toolbox/2.1.0/cmsis-toolbox-linux-amd64.tar.gz -nv
 wget https://github.com/Kitware/CMake/releases/download/v3.27.4/cmake-3.27.4-linux-x86_64.sh -nv
 tar -xf cmsis-toolbox-linux-amd64.tar.gz -C /home/arm_mlops_docker
 chmod +x cmake-3.27.4-linux-x86_64.sh
