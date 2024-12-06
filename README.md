@@ -65,4 +65,3 @@ The following items are at this moment not completed:
 
 - Consistent support for GCC and LLVM compiler. Currently only Arm Compiler 6 is supported.
 - Multiple demo projects for VSI usage (Sensor, Audio, Video) will be added.
-- Arm Virtual Models are not yet available for vcpkg installation; use classic MDK version 5 for using AVH models.
