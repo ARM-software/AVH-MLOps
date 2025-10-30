@@ -51,21 +51,21 @@ Build command syntax:
 
 Examples:
 
-- Build Model for Cortex-M7 with AC6 (size)
+- Build Model for Cortex-M4 with AC6 (size)
   ```sh
-  cbuild MLOps.csolution.yml --context ML_Model.size+CM7 --toolchain AC6
+  cbuild MLOps.csolution.yml --context ML_Model.size+CM4 --toolchain AC6
   ```
-- Build Test for Cortex-M7 with AC6 (size)
+- Build Test for Cortex-M4 with AC6 (size)
   ```sh
-  cbuild MLOps.csolution.yml --context ML_Test.size+CM7 --toolchain AC6
+  cbuild MLOps.csolution.yml --context ML_Test.size+CM4 --toolchain AC6
   ```
-- Build Model and Test for Cortex-M7 with AC6 (size)
+- Build Model and Test for Cortex-M4 with AC6 (size)
   ```sh
-  cbuild MLOps.csolution.yml --context .size+CM7 --toolchain AC6
+  cbuild MLOps.csolution.yml --context .size+CM4 --toolchain AC6
   ```
-- Build Model and Test for Cortex-M7 with AC6 (size, size, speed)
+- Build Model and Test for Cortex-M4 with AC6 (size, size, speed)
   ```sh
-  cbuild MLOps.csolution.yml --context +CM7 --toolchain AC6
+  cbuild MLOps.csolution.yml --context +CM4 --toolchain AC6
   ```
 - Build Model and Test for all cores with GCC (size, size, speed)
   ```sh
@@ -80,9 +80,9 @@ Run command syntax:
 
 Examples:
 
-- Run Test on model for Cortex-M7 (size)
+- Run Test on model for Cortex-M4 (size)
 ```sh
-FVP_MPS2_Cortex-M7 -f ./Target/CM7/fvp_config.txt ./out/ML_Test/CM7/size/ML_Test.axf
+FVP_MPS2_Cortex-M4 -f ./Target/CM4/fvp_config.txt ./out/ML_Test/CM4/size/ML_Test.axf
 ```
 - Run Test on model for Cortex-M55 with Ethos (size)
 ```sh

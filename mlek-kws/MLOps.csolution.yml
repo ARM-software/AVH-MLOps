@@ -1,20 +1,9 @@
 solution:
-  created-for: cmsis-toobox@2.0.0
+  created-for: cmsis-toolbox@2.0.0
 
   cdefault:
-  misc:
-    - for-compiler: GCC
-      C-CPP:
-        - -ffunction-sections
-        - -fdata-sections
-      Link:
-        - -Wl,--gc-sections
-    - for-compiler: CLANG
-      C-CPP:
-        - -ffunction-sections
-        - -fdata-sections
-      Link:
-        - -Wl,--gc-sections
+
+  compiler: AC6
 
   packs:
     - pack: ARM::Cortex_DFP@>=1.0.0-dev0
@@ -47,14 +36,29 @@ solution:
         fpu: off
       variables:
         - Target-Layer: ../Target/CM4/Target.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: ML_Test.balanced
+            - project-context: ML_Model.balanced
     - type: CM4_FP
       device: ARMCM4
       variables:
         - Target-Layer: ../Target/CM4/Target.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: ML_Test.balanced
+            - project-context: ML_Model.balanced
     - type: CM7
       device: ARMCM7
       variables:
         - Target-Layer: ../Target/CM7/Target.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: ML_Test.balanced
+            - project-context: ML_Model.balanced
     # - type: CM23
     #   device: ARMCM23
     #   processor:
@@ -67,12 +71,22 @@ solution:
         trustzone: off
       variables:
         - Target-Layer: ../Target/CM33/Target.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: ML_Test.balanced
+            - project-context: ML_Model.balanced
     - type: CM55
       device: ARMCM55
       processor:
         trustzone: off
       variables:
         - Target-Layer: ../Target/CM55/Target.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: ML_Test.balanced
+            - project-context: ML_Model.balanced
     - type: CM55_Ethos
       device: ARM::SSE-300-MPS3
       processor:
@@ -82,12 +96,22 @@ solution:
         - ETHOSU55
       variables:
         - Target-Layer: ../Target/CM55_Ethos/Target.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: ML_Test.balanced
+            - project-context: ML_Model.balanced
     - type: CM85
       device: ARMCM85
       processor:
         trustzone: off
       variables:
         - Target-Layer: ../Target/CM85/Target.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: ML_Test.balanced
+            - project-context: ML_Model.balanced
     - type: CM85_Ethos
       device: ARM::SSE-310-MPS3_FVP
       processor:
@@ -97,6 +121,11 @@ solution:
         - ETHOSU65
       variables:
         - Target-Layer: ../Target/CM85_Ethos/Target.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: ML_Test.balanced
+            - project-context: ML_Model.balanced
 
   build-types:
     - type: balanced

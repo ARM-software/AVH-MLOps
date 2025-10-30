@@ -22,7 +22,7 @@ project:
     - component: ARM::CMSIS:CORE
     - component: ARM::CMSIS:DSP&Source
     - component: CMSIS-View:Event Recorder&Semihosting
-    - component: tensorflow::Data Exchange:Serialization:flatbuffers
+    - component: tensorflow::Data Exchange:Serialization:flatbuffers&tensorflow
     - component: tensorflow::Machine Learning:TensorFlow:Testing
     - component: ARM::ML Eval Kit:Common:API
     - component: ARM::ML Eval Kit:Common:Log

@@ -34,19 +34,19 @@ project:
     - component: ARM::CMSIS:CORE
     - component: ARM::CMSIS:DSP&Source
     - component: ARM::CMSIS:NN Lib
-    - component: tensorflow::Data Exchange:Serialization:flatbuffers
-    - component: tensorflow::Data Processing:Math:gemmlowp fixed-point
-    - component: tensorflow::Data Processing:Math:kissfft
-    - component: tensorflow::Data Processing:Math:ruy
+    - component: tensorflow::Data Exchange:Serialization:flatbuffers&tensorflow
+    - component: tensorflow::Data Processing:Math:gemmlowp fixed-point&tensorflow
+    - component: tensorflow::Data Processing:Math:kissfft&tensorflow
+    - component: tensorflow::Data Processing:Math:ruy&tensorflow
     - component: tensorflow::Machine Learning:TensorFlow:Kernel&CMSIS-NN
       for-context:
-        - +CM0
-        - +CM0plus
-        - +CM3
+        # - +CM0
+        # - +CM0plus
+        # - +CM3
         - +CM4
         - +CM4_FP
         - +CM7
-        - +CM23
+        # - +CM23
         - +CM33
         - +CM55
         - +CM85
@@ -74,13 +74,13 @@ project:
         - file: ./src/Labels.cpp
         - file: ./src/kws_micronet_m.tflite.cpp
           for-context:
-            - +CM0
-            - +CM0plus
-            - +CM3
+            # - +CM0
+            # - +CM0plus
+            # - +CM3
             - +CM4
             - +CM4_FP
             - +CM7
-            - +CM23
+            # - +CM23
             - +CM33
             - +CM55
             - +CM85
