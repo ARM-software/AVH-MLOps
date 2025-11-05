@@ -1,3 +1,12 @@
+[![License](https://img.shields.io/github/license/ARM-software/AVH-MLOps?label)](https://github.com/Arm-Examples/AVH-Hello/blob/main/LICENSE)
+[![Base Docker Image - Build and Push](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH-MLOps/base_image_build.yml?logo=arm&logoColor=0091bd&label=Base%20Docker%20Image%20-%20Build%20and%20Push)](https://github.com//ARM-software/AVH-MLOps/tree/main/.github/workflows/base_image_build.yml)[![Licensed Docker Image - Build and Push](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH-MLOps/licensed_image_build.yml?logo=arm&logoColor=0091bd&label=Licensed%20Docker%20Image%20-%20Build%20and%20Push)](https://github.com//ARM-software/AVH-MLOps/tree/main/.github/workflows/licensed_image_build.yml)
+[![Licensed Docker Image - Test](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH-MLOps/licensed_image_test.yml?logo=arm&logoColor=0091bd&label=Licensed%20Docker%20Image%20-%20Test)](https://github.com//ARM-software/AVH-MLOps/tree/main/.github/workflows/licensed_image_test.yml)
+
+
+[![MLEK_kws - Build and Run on AVH](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH-MLOps/build_MLEK_kws.yml?logo=arm&logoColor=0091bd&label=MLEK_kws%20-%20Build%20and%20Run%20on%20AVH)](https://github.com//ARM-software/AVH-MLOps/tree/main/.github/workflows/build_MLEK_kws.yml)
+[![QeexoAutoML - Build and Run on AVH](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH-MLOps/build_QeexoML.yml?logo=arm&logoColor=0091bd&label=QeexoAutoML%20-%20Build%20and%20Run%20on%20AVH)](https://github.com//ARM-software/AVH-MLOps/tree/main/.github/workflows/build_QeexoML.yml)
+[![TFLmicrospeech - Build and Run on AVH](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH-MLOps/build_TFLmicrospeech.yml?logo=arm&logoColor=0091bd&label=TFLmicrospeech%20-%20Build%20and%20Run%20on%20AVH)](https://github.com//ARM-software/AVH-MLOps/tree/main/.github/workflows/build_TFLmicrospeech.yml)
+
 # Foundation Components for MLOps Systems
 
 Arm provides a set of foundation tools and software components to enable MLOps systems and the overall development flow for machine learning applications. 
@@ -9,6 +18,14 @@ This repository contains:
   - Measure performance (inference time) of an ML model using Arm Virtual Hardware (AVH) FVP Models.
  
 Refer to the [**ML Developers Guide for Cortex-M Processors and Ethos-U NPU**](https://developer.arm.com/documentation/109267/latest/) for more information.
+
+## Quick Start
+
+1. Install [Keil Studio for VS Code](https://marketplace.visualstudio.com/items?itemName=Arm.keil-studio-pack) from the VS Code marketplace.
+2. In VS Code, either clone this Git repository or (if downloaded as ZIP file) open the top-level folder.
+3. Open the [CMSIS View](https://mdk-packs.github.io/vscode-cmsis-solution-docs/userinterface.html#2-main-area-of-the-cmsis-view) in VS Code and use the ... menu to choose an example via Select Active Solution from workspace.
+4. The related tools and software packs are downloaded and installed. Review progress with View - Output - CMSIS Solution.
+5. In the CMSIS view, use the [Action buttons](https://github.com/ARM-software/vscode-cmsis-csolution?tab=readme-ov-file#action-buttons) to build, load and debug the example on the hardware.
 
 ## Directory Structure
 
@@ -38,13 +55,17 @@ URL / Tool     | Description
 
 Four workflows examplify a typical MLOps cycle with the Arm provided Foundation Components for MLOps.
 
-**Base Docker Image - Build and Push (base_image_build.yml)**: Build a docker image that has all tools mentioned before installed and configured. It will be stored on the Github docker registry for fast access to the image.
+**Base Docker Image - Build and Push (base_image_build.yml)**:<br>
+Build a docker image that has all tools mentioned before installed and configured. It will be stored on the Github docker registry for fast access to the image.
 
-**Licensed Docker Image - Build and Push (licensed_image_build.yml)**: Based on the Base docker image, this workflow adds your own license supplied by Arm for the commercial tools. It will also be stored on the Github docker registry. It will be build nightly and will be the image that actual container run-times will be spawned from.
+**Licensed Docker Image - Build and Push (licensed_image_build.yml)**:<br>
+Based on the Base docker image, this workflow adds your own license supplied by Arm for the commercial tools. It will also be stored on the Github docker registry. It will be build nightly and will be the image that actual container run-times will be spawned from.
 
-**Licensed Docker Image - Test (test_licensed_image.yml)**: Test the docker image with a simplified workflow.
+**Licensed Docker Image - Test (licensed_image_test.yml)**:<br>
+Test the docker image with a simplified workflow.
 
-**ML Project - Build and Run on Arm Virtual Hardware FVP (build_ml_library.yml)**: More complex example of a end to end workflow from building a ML Library, test project and to execute it on Arm Virtual Hardware. 
+**ML Project - Build and Run on Arm Virtual Hardware FVP (build_ml_library.yml)**:<br>
+More complex example of a end to end workflow from building a ML Library, test project and to execute it on Arm Virtual Hardware. 
 
 ## Customize this repository
 

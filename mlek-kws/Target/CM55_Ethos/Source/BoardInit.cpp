@@ -86,7 +86,7 @@ static int arm_ethosu_npu_init(void)
     arm_ethosu_npu_irq_init();
 
     /* Initialise Ethos-U device */
-    const void* ethosu_base_address = (void*)(ETHOS_U55_APB_BASE_S);
+    void* ethosu_base_address = (void*)(ETHOS_U55_APB_BASE_S);
 
     debug("Cache arena: 0x%p\n", get_cache_arena());
 

@@ -3,7 +3,7 @@ layer:
   description: Cortex-M85 with Ethos-U target components and files
 
   packs:
-    - pack: Arm::ethos-u-core-driver@1.22.8
+    - pack: ARM::ethos-u-core-driver@1.25.2
 
   components:
     - component: ARM::Device:Definition
@@ -11,7 +11,7 @@ layer:
     - component: ARM::Native Driver:SysCounter
     - component: ARM::Native Driver:SysTimer
     - component: ARM::Native Driver:Timeout
-    - component: Arm::Machine Learning:NPU Support:Ethos-U Driver&Generic U65
+    - component: ARM::Machine Learning:NPU Support:Ethos-U Driver&Generic U65
 
   linker:
     - script: ./RTE/Device/SSE-310-MPS3_FVP/mps3-sse-310.sct

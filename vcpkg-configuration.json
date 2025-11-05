@@ -9,8 +9,8 @@
  "requires": {
   "arm:compilers/arm/armclang": "6.20.0",
   "arm:compilers/arm/arm-none-eabi-gcc": "^12.3.1-0",
-  "arm:compilers/arm/llvm-embedded": "^16.0.0-0",
-    "arm:tools/open-cmsis-pack/cmsis-toolbox": "^2.1.0-0",
-    "arm:models/arm/avh-fvp": "^11.22.39"
+  "arm:compilers/arm/llvm-embedded": "^19.1.5",
+  "arm:tools/open-cmsis-pack/cmsis-toolbox": "^2.11.0",
+  "arm:models/arm/avh-fvp": "^11.29.27"
  }
 }

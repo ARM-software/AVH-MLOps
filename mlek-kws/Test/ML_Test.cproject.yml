@@ -6,6 +6,7 @@ project:
     - pack: ARM::CMSIS@>=6.0.0-dev0
     - pack: ARM::CMSIS-DSP@1.15.0
     - pack: ARM::CMSIS-View@1.0.0
+    - pack: ARM::CMSIS-NN@4.0.0
     - pack: ARM::ml-embedded-eval-kit-uc-api@22.8.0-Beta
     - pack: tensorflow::flatbuffers@1.22.8
     - pack: tensorflow::tensorflow-lite-micro@1.22.8

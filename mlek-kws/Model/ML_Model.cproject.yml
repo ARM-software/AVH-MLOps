@@ -6,7 +6,7 @@ project:
     - pack: ARM::CMSIS@>=6.0.0-dev0
     - pack: ARM::CMSIS-DSP@1.15.0
     - pack: ARM::CMSIS-NN@4.0.0
-    - pack: Arm::ethos-u-core-driver@1.22.8
+    - pack: ARM::ethos-u-core-driver@1.25.2
     - pack: ARM::ml-embedded-eval-kit-uc-api@22.8.0-Beta
     - pack: tensorflow::flatbuffers@1.22.8
     - pack: tensorflow::gemmlowp@1.22.8
@@ -56,10 +56,10 @@ project:
         - +CM85_Ethos
     - component: tensorflow::Machine Learning:TensorFlow:Kernel Utils
     - component: tensorflow::Machine Learning:TensorFlow:Testing
-    - component: Arm::Machine Learning:NPU Support:Ethos-U Driver&Generic U55
+    - component: ARM::Machine Learning:NPU Support:Ethos-U Driver&Generic U55
       for-context:
       - +CM55_Ethos
-    - component: Arm::Machine Learning:NPU Support:Ethos-U Driver&Generic U65
+    - component: ARM::Machine Learning:NPU Support:Ethos-U Driver&Generic U65
       for-context:
       - +CM85_Ethos
     - component: ARM::ML Eval Kit:Common:API
