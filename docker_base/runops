@@ -7,7 +7,7 @@
 # Options: (none)
 
 # Load environment variables from file using /load_env.sh
-source /load_env.sh
+source /load_env.sh /vcpkg
 # run the command 
 exec "$@"
 
