@@ -1,50 +1,40 @@
+[![License](https://img.shields.io/github/license/Arm-Software/AVH-MLOPs?label)](https://github.com/Arm-Software/AVH-MLOPs/blob/main/LICENSE)
+[![base_image_build](https://img.shields.io/github/actions/workflow/status/Arm-Software/AVH-MLOPs/base_image_build.yml?logo=arm&logoColor=0091bd&label=Base%20Image%20build)](https://github.com/Arm-Software/AVH-MLOPs/tree/main/.github/workflows/base_image_build.yml)
+[![licensed_image_build](https://img.shields.io/github/actions/workflow/status/Arm-Software/AVH-MLOPs/licensed_image_build.yml?logo=arm&logoColor=0091bd&label=Licensed%20Image%20Build)](https://github.com/Arm-Software/AVH-MLOPs/tree/main/.github/workflows/licensed_image_build.yml)
+[![licensed_image_build_community](https://img.shields.io/github/actions/workflow/status/Arm-Software/AVH-MLOPs/licensed_image_build_community.yml?logo=arm&logoColor=0091bd&label=Licensed%20Image%20Build%20Community)](https://github.com/Arm-Software/AVH-MLOPs/tree/main/.github/workflows/licensed_image_build_community.yml)
+
+
 # Foundation Components for MLOps Systems
 
 Arm provides a set of foundation tools and software components to enable MLOps systems and the overall development flow for machine learning applications. 
-This repository contains:
+- This repository contains workflows to create Docker containers with foundation tools for MLOps systems.
 
-- Setup of a Docker container with foundation tools for MLOps systems.
-- GitHub Actions that demonstrate typical MLOps workflows such as:
-  - Create a library with a trained ML model with different compilers and for different target processors
-  - Measure performance (inference time) of an ML model using Arm Virtual Hardware (AVH) FVP Models.
- 
-Refer to the [**ML Developers Guide for Cortex-M Processors and Ethos-U NPU**](https://developer.arm.com/documentation/109267/latest/) for more information.
+
+## Container customization
+Tools for the container can be selected by altering the [vcpkg-configuration.json](./docker_base/vcpkg-configuration.json) file. See [vcpkg-tool-installation](https://learn.arm.com/learning-paths/embedded-and-microcontrollers/vcpkg-tool-installation/config_creation/).
+
 
 ## Directory Structure
 
-Directory           | Description
-:-------------------|:------------------------------
-[.github/workflows](./.github/workflows)           | GitHub Action workflow definitions.
-[AVH-MLOps-main](./AVH-MLOps-main)                 | Simple "Hello World" test project with vcpkg installation for desktop usage.
-[mlek-kws](./mlek-kws)                             | MLEK Keyword Spotting (KWS) example with generation of a ML Model library and execution on AVH. This project runs on all relevant Cortex-M and Ethos-U targets and can be compiled using different toolchains.
-[QeexoAutoML](./QeexoAutoML)                       | Qeexo AutoML example with prebuilt ML library and test execution.
-[TFLmicrospeech](./TFLmicrospeech)                 | TensorFLow Lite Microspeech example with ML library generation and test execution. This project runs on all relevant Cortex-M and Ethos-U targets and can be compiled using different toolchains.
-[docker_base](./docker_base)                       | Docker base image with all tools (see Arm Tools Artifactory).
-[docker_licensed](./docker_licensed)               | Import license file into the Docker base image.
+| <div style="width:280px">Directory </div>          | Description  |
+|---                                                 |---           |
+| [.github/workflows](./.github/workflows)           | GitHub Action workflow definitions. | 
+| [docker_base](./docker_base)                       | Docker base image with all tools (see Arm Tools Artifactory). | 
+| [docker_licensed](./docker_licensed)               | Import license file into the Docker base image. | 
 
-## Arm Tools Artifactory
 
-To facilitate tool integration Arm provides critical foundation tools in a tools artifactory. The following tools are installed in the Docker container. In addition utilities such as CMake are installed.
+## Continuous Integration (CI)
 
-URL / Tool     | Description
-:--------------|:-------------------
-[artifacts.tools.arm.com/avh/](https://artifacts.tools.arm.com/avh/)                      | [Arm Virtual Hardware FVP Models](https://arm-software.github.io/AVH/main/simulation/html/index.html)
-[artifacts.tools.arm.com/cmsis-toolbox/](https://artifacts.tools.arm.com/cmsis-toolbox/)  | [CLI Build System for CMSIS-Pack based projects](https://open-cmsis-pack.github.io/cmsis-toolbox/)
-[artifacts.tools.arm.com/arm-compiler/](https://artifacts.tools.arm.com/arm-compiler/)      | [Arm Compiler for Embedded](https://developer.arm.com/Tools%20and%20Software/Arm%20Compiler%20for%20Embedded) (commercial)
-[artifacts.tools.arm.com/arm-none-eabi-gcc/](https://artifacts.tools.arm.com/arm-none-eabi-gcc/) | [Arm GNU Toolchain](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain) (community supported); not recommended for Cortex-M with Helium
-[github.com/ARM-software/LLVM-embedded-toolchain-for-Arm/](https://github.com/ARM-software/LLVM-embedded-toolchain-for-Arm/releases/latest/) | [Arm LLVM Embedded Toolchain](https://learn.arm.com/install-guides/llvm-embedded/) (community supported)
+Four workflows examplify how to create docker images and equip with licenses suitable for build and test typical MLOps applications.
 
-## Github Action workflow templates
+| <div style="width:280px"> CI Workflow files </div>                      | Description |
+|---                                                                      |---  |
+| [base_image_build.yml](.github/workflows/base_image_build.yml)          | Build a docker image that has all ARM tools mentioned before installed and configured. It will be stored on the Github docker registry for fast access to the image. |
+| [licensed_image_build.yml](.github/workflows/licensed_image_build.yml)  | By using the Base docker image, this workflow adds your own license supplied by Arm for the commercial tools. It is rebuilt every night and serves as the base image from which the actual container runtime environments are generated. It will also be stored on the Github docker registry. |
+| [licensed_image_test.yml](.github/workflows/licensed_image_test.yml)    | Test the licensed docker image with the necessary tools and dependencies for an ML project. |
+| [licensed_image_build_community.yml](.github/workflows/licensed_image_build_community.yml)  | By using the Base docker image, this workflow adds your own community license supplied by Arm for the commercial tools. It is rebuilt every night and serves as the base image from which the actual container runtime environments are generated. It will also be stored on the Github docker registry. |
 
-Four workflows examplify a typical MLOps cycle with the Arm provided Foundation Components for MLOps.
 
-**Base Docker Image - Build and Push (base_image_build.yml)**: Build a docker image that has all tools mentioned before installed and configured. It will be stored on the Github docker registry for fast access to the image.
-
-**Licensed Docker Image - Build and Push (licensed_image_build.yml)**: Based on the Base docker image, this workflow adds your own license supplied by Arm for the commercial tools. It will also be stored on the Github docker registry. It will be build nightly and will be the image that actual container run-times will be spawned from.
-
-**Licensed Docker Image - Test (test_licensed_image.yml)**: Test the docker image with a simplified workflow.
-
-**ML Project - Build and Run on Arm Virtual Hardware FVP (build_ml_library.yml)**: More complex example of a end to end workflow from building a ML Library, test project and to execute it on Arm Virtual Hardware. 
 
 ## Customize this repository
 
@@ -59,9 +49,9 @@ Additional installations for custom tools you can add those to docker_base/Docke
 
 Check the Actions view to verify the execution of all 4 workflows.
 
-## Known Issues
 
-The following items are at this moment not completed:
+## Raise a bug report
+Please report any issue you are facing while using these repository [**Issues tab on GitHub**](https://github.com/ARM-software/AVH-MLOps/issues/new?assignees=&labels=bug&projects=&template=bug.yaml&title=%5BBug%5D%3A+).
 
-- Consistent support for GCC and LLVM compiler. Currently only Arm Compiler 6 is supported.
-- Multiple demo projects for VSI usage (Sensor, Audio, Video) will be added.
+
+

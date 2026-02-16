@@ -22,11 +22,11 @@ jobs:
     steps:
       - name: Checkout repository
         # Check out the repository containing the Dockerfile and other necessary files
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
       - name: Log in to GitHub Container Registry
         # Log in to GitHub Container Registry using the actor and a GitHub token
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -49,7 +49,7 @@ jobs:
 
       - name: Build and push Docker image
         # Build the Docker image using the Dockerfile in the `docker_licensed` directory and push it to GitHub Container Registry
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         with:
           context: ./docker_licensed
           push: true
