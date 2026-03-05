@@ -14,6 +14,29 @@ Arm provides a set of foundation tools and software components to enable MLOps s
 Tools for the container can be selected by altering the [vcpkg-configuration.json](./docker_base/vcpkg-configuration.json) file. See [vcpkg-tool-installation](https://learn.arm.com/learning-paths/embedded-and-microcontrollers/vcpkg-tool-installation/config_creation/).
 
 
+## Multi-architecture support
+
+The Docker images support both **x86_64 (amd64)** and **aarch64 (arm64)** host architectures.
+
+### Local builds
+When building locally, Docker automatically targets the host architecture:
+```bash
+docker build -t arm-mlops-base ./docker_base
+```
+No additional flags are needed — this works on both x86_64 and aarch64 hosts (e.g., Apple Silicon, AWS Graviton).
+
+To explicitly cross-build for a different architecture:
+```bash
+docker build --platform=linux/arm64 -t arm-mlops-base-arm64 ./docker_base
+```
+
+### CI images
+CI workflows produce architecture-specific image tags:
+- `arm-mlops-docker-base:latest-amd64` / `arm-mlops-docker-base:latest-arm64`
+- `arm-mlops-docker-licensed:latest-amd64` / `arm-mlops-docker-licensed:latest-arm64`
+- `arm-mlops-docker-licensed-community:latest-amd64` / `arm-mlops-docker-licensed-community:latest-arm64`
+
+
 ## Directory Structure
 
 | <div style="width:280px">Directory </div>          | Description  |
