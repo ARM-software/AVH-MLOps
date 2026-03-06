@@ -18,7 +18,15 @@ on:
 
 jobs:
   build_and_push:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-latest
+          - arch: arm64
+            runner: ubuntu-latest-arm64
+    runs-on: ${{ matrix.runner }}
     steps:
       - name: Checkout repository
         # Check out the repository containing the Dockerfile and other necessary files
@@ -38,13 +46,13 @@ jobs:
         run: echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
  
       - name: Pull Base Docker image
-        # Pull the base Docker image from GitHub Container Registry
-        run: docker pull ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest
+        # Pull the arch-specific base Docker image from GitHub Container Registry
+        run: docker pull ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest-${{ matrix.arch }}
         
       - name: Create license file (stub)
         # Create a license file for the Docker image using the ARM UBL license identifier
         run: |
-          docker run -d --name build_container -u root -v ${{ github.workspace }}:/workspace ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest sleep infinity
+          docker run -d --name build_container -u root -v ${{ github.workspace }}:/workspace ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest-${{ matrix.arch }} sleep infinity
           if [ -z "${{ secrets.ARM_UBL_LICENSE_IDENTIFIER }}" ]; then
             echo "Secret is not set. Building with Community Edition license. Non commercial use only."
           else
@@ -60,5 +68,5 @@ jobs:
           context: ./docker_licensed
           push: true
           build-args: |
-            BASE_IMAGE=ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest
-          tags: ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest
+            BASE_IMAGE=ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-base:latest-${{ matrix.arch }}
+          tags: ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest-${{ matrix.arch }}
