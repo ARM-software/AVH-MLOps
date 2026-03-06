@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ubuntu:latest as base
+FROM ubuntu:latest as base
 
 SHELL ["/bin/bash", "-c"]
 
