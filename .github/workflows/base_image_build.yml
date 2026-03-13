@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Checkout repository
         # Check out the repository containing the Dockerfile and other necessary files
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Log in to GitHub Container Registry
         # Log in to GitHub Container Registry using the actor and a GitHub token
@@ -33,7 +33,7 @@ jobs:
 
       - name: Set up Docker Buildx
         # Set up Docker Buildx for building multi-architecture images
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Format repo slug
         # Format the repository slug to lowercase for use in the Docker image tags
@@ -42,7 +42,7 @@ jobs:
 
       - name: Build and push Docker image
         # Build the Docker image using the Dockerfile in the `docker_base` directory and push it to GitHub Container Registry
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./docker_base
           push: true

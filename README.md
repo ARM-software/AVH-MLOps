@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/github/license/Arm-Software/AVH-MLOPs?label=License)](https://github.com/Arm-Software/AVH-MLOPs/blob/main/LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-green?label=License)](https://github.com/Arm-Software/AVH-MLOPs/blob/main/LICENSE)
 [![base_image_build](https://img.shields.io/github/actions/workflow/status/Arm-Software/AVH-MLOPs/base_image_build.yml?logo=arm&logoColor=0091bd&label=Base%20Image%20build)](https://github.com/Arm-Software/AVH-MLOPs/tree/main/.github/workflows/base_image_build.yml)
 [![licensed_image_build](https://img.shields.io/github/actions/workflow/status/Arm-Software/AVH-MLOPs/licensed_image_build.yml?logo=arm&logoColor=0091bd&label=Licensed%20Image%20Build)](https://github.com/Arm-Software/AVH-MLOPs/tree/main/.github/workflows/licensed_image_build.yml)
 [![licensed_image_build_community](https://img.shields.io/github/actions/workflow/status/Arm-Software/AVH-MLOPs/licensed_image_build_community.yml?logo=arm&logoColor=0091bd&label=Licensed%20Image%20Build%20Community)](https://github.com/Arm-Software/AVH-MLOPs/tree/main/.github/workflows/licensed_image_build_community.yml)
