@@ -9,6 +9,10 @@ on:
 
 jobs:
   build_and_push:
+    permissions:
+      contents: read
+      packages: write
+  
     strategy:
       fail-fast: false
       matrix:
