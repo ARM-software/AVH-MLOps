@@ -22,17 +22,11 @@ jobs:
           - arch: arm64
             runner: ubuntu-24.04-arm
     runs-on: ${{ matrix.runner }}
+
     steps:
       - name: Checkout repository
         # Check out the repository containing the Dockerfile and other necessary files
         uses: actions/checkout@v6
-
-      - name: Debug repository API access
-        run: |
-          curl -i \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${{ github.repository }}
 
       - name: Log in to GitHub Container Registry
         # Log in to GitHub Container Registry using the actor and a GitHub token
