@@ -9,6 +9,10 @@ on:
 
 jobs:
   build_and_push:
+    permissions:
+      contents: read
+      packages: write
+  
     strategy:
       fail-fast: false
       matrix:
@@ -18,6 +22,7 @@ jobs:
           - arch: arm64
             runner: ubuntu-24.04-arm
     runs-on: ${{ matrix.runner }}
+
     steps:
       - name: Checkout repository
         # Check out the repository containing the Dockerfile and other necessary files
@@ -25,7 +30,7 @@ jobs:
 
       - name: Log in to GitHub Container Registry
         # Log in to GitHub Container Registry using the actor and a GitHub token
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
