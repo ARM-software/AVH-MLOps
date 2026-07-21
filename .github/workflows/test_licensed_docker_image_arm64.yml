@@ -86,12 +86,9 @@ jobs:
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on:  ubuntu-24.04-arm
 
-    env:
-      DOCKER_IMAGE: ghcr.io/arm-software/avh-mlops/arm-mlops-docker-licensed:latest-arm64
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v4
@@ -100,8 +97,23 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Pull Licensed Docker image (arm64)
-        run: docker pull ${{ env.DOCKER_IMAGE }}
+      - name: Format repo slug
+        # Format the repository slug to lowercase for use in the Docker image tags
+        id: repo_slug
+        run: echo "REPO_SLUG=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Define Licensed Docker image (arm64)
+        run: |
+          echo "DOCKER_IMAGE=$(echo ghcr.io/${{ env.REPO_SLUG }}/arm-mlops-docker-licensed:latest-arm64)" >> $GITHUB_ENV
+
+      - name: Show variables
+        run: |
+          echo "REPO_SLUG=${{ env.REPO_SLUG }}"
+          echo "DOCKER_IMAGE=${{ env.DOCKER_IMAGE }}"
+
+      - name: Pull Licensed Docker image (amd64)
+        run: |
+          docker pull ${{ env.DOCKER_IMAGE }}
 
       - name: Start Docker container
         run: |
